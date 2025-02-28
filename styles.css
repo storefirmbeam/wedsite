@@ -8,7 +8,7 @@
 /* Body and basic layout */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color: #fff;
     color: #333;
 }
 
@@ -17,7 +17,6 @@ header {
     background-color: #fff;
     text-align: center;
     padding: 50px 0;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 header h1 {
@@ -34,32 +33,94 @@ header .countdown {
     font-size: 1.2rem;
     font-weight: bold;
     margin-top: 10px;
+    color: #ffcc00;
 }
 
 /* Navigation Bar */
 nav {
-    background-color: #333;
+    background-color: #fff;
     padding: 10px 0;
-    text-align: center;
+    position: relative;
 }
 
+/* Menu Toggle Button (Hamburger Icon) */
+.menu-toggle {
+    display: none;
+    font-size: 2rem;
+    color: #000;
+    cursor: pointer;
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: none;
+    border: none;
+}
+
+/* Default Navigation Bar */
 nav ul {
     list-style-type: none;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 0;
 }
 
 nav ul li {
-    display: inline-block;
-    margin: 0 20px;
+    margin: 5px 15px;
+    padding: 10px;
+    white-space: nowrap;
 }
 
 nav ul li a {
-    color: #fff;
+    color: #000;
     text-decoration: none;
     font-size: 1.2rem;
+    padding: 8px 12px;
+    display: block;
 }
 
 nav ul li a:hover {
     color: #ffcc00;
+}
+
+/* Dynamically stack buttons as screen shrinks, keeping second row tighter */
+@media (max-width: 900px) {
+    nav ul {
+        justify-content: flex-start;
+    }
+    
+    nav ul li {
+        flex: 1 1 auto; /* Items move dynamically */
+        text-align: center;
+    }
+    
+    /* Reduce spacing between second-row buttons */
+    nav ul li:nth-child(n+6) {
+        flex-basis: auto;
+    }
+}
+
+/* Small Screens (Switch to hamburger menu) */
+@media (max-width: 600px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    nav ul {
+        display: none;
+        flex-direction: column;
+        background: #fff;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    nav ul.show {
+        display: flex;
+    }
 }
 
 /* Main Content */
@@ -67,7 +128,6 @@ main {
     padding: 40px 20px;
     background-color: #fff;
     margin-top: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 section {
@@ -81,29 +141,145 @@ section h2 {
 
 /* Footer Styling */
 footer {
-    background-color: #333;
-    color: #fff;
+    background-color: #fff;
+    color: #000;
     text-align: center;
     padding: 20px;
     margin-top: 50px;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    header h1 {
-        font-size: 2.5rem;
-    }
 
-    header h2 {
-        font-size: 1.2rem;
-    }
+.main-section {
+    text-align: center; /* Centers inline elements like images */
+}
 
-    nav ul li {
-        display: block;
-        margin: 10px 0;
-    }
+.main-section p {
+    font-size: 1rem;
+}
 
-    nav ul li a {
-        font-size: 1rem;
-    }
+.engagement-photo {
+    display: block; 
+    margin: 0 auto; /* Centers the image */
+    max-width: 100%; /* Ensures it scales properly */
+    height: auto;
+}
+
+.floral-banner {
+    display: block; 
+    margin: 0 auto; /* Centers the image */
+    max-width: 100%; /* Ensures it scales properly */
+    height: auto;
+}
+
+
+/*Our story page*/
+#our-story {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #fff;
+    max-width: 800px;
+    margin: 0 auto;
+    /*box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);*/
+    border-radius: 10px;
+}
+
+#our-story p {
+    font-size: 1.2rem;
+    color: #555;
+    line-height: 1.6;
+}
+
+
+/*Photos page*/
+#photos {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #fff;
+    max-width: 800px;
+    margin: 0 auto;
+    /*box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);*/
+    border-radius: 10px;
+}
+
+
+#photos p {
+    font-size: 1.2rem;
+    color: #555;
+    line-height: 1.6;
+}
+
+
+/*Wedding Party*/
+#wedding-party {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #fff;
+    max-width: 800px;
+    margin: 0 auto;
+    /*box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);*/
+    border-radius: 10px;
+}
+
+
+#wedding-party p {
+    font-size: 1.2rem;
+    color: #555;
+    line-height: 1.6;
+}
+
+
+/*Q&A Party*/
+#qa {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #fff;
+    max-width: 800px;
+    margin: 0 auto;
+    /*box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);*/
+    border-radius: 10px;
+}
+
+
+#qa p {
+    font-size: 1.2rem;
+    color: #555;
+    line-height: 1.6;
+}
+
+
+/*Travel*/
+#travel {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #fff;
+    max-width: 800px;
+    margin: 0 auto;
+    /*box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);*/
+    border-radius: 10px;
+}
+
+
+#travel p {
+    font-size: 1.2rem;
+    color: #555;
+    line-height: 1.6;
+}
+
+
+/*Registry*/
+#registry {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #fff;
+    max-width: 800px;
+    margin: 0 auto;
+    /*box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);*/
+    border-radius: 10px;
+}
+
+
+#registry p {
+    font-size: 1.2rem;
+    color: #555;
+    line-height: 1.6;
 }

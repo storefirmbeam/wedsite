@@ -1,11 +1,12 @@
 document.addEventListener("DOMContentLoaded", function () {
+    // Countdown Timer
     const weddingDate = new Date("May 30, 2026 00:00:00");
     const countdownElement = document.querySelector(".countdown");
 
     function updateCountdown() {
         const now = new Date();
         const timeRemaining = weddingDate - now;
-        
+
         if (timeRemaining <= 0) {
             countdownElement.textContent = "The big day is here!";
             return;
@@ -16,5 +17,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     setInterval(updateCountdown, 1000);
-    updateCountdown();  // Run immediately to show the initial countdown
+    updateCountdown(); // Run immediately to show initial countdown
+
+    // Mobile Menu Toggle
+    document.querySelector(".menu-toggle").addEventListener("click", function () {
+        document.getElementById("nav-menu").classList.toggle("show");
+    });
 });
