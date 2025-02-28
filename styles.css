@@ -116,6 +116,8 @@ nav ul li a:hover {
         left: 0;
         width: 100%;
         text-align: center;
+        max-height: 80vh; /* Prevent overflow */
+        overflow-y: auto; /* Enable scrolling */
     }
 
     nav ul.show {
