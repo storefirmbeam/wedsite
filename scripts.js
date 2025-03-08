@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // Submit RSVP to InfinityFree
-
+/*
 document.getElementById("rsvpForm").addEventListener("submit", async function(event) {
     event.preventDefault();
 
@@ -61,3 +61,4 @@ async function loadQnA() {
     });
 }
 loadQnA();
+*/
