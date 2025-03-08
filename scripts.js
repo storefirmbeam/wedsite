@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         } catch (error) {
             console.error("Error verifying Guest ID:", error);
-            document.getElementById("rsvpMessage").textContent = "Error contacting server.";
+            document.getElementById("rsvpMessage").textContent = "Error contacting server. Contact administration.";
         }
     });
 
@@ -113,7 +113,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         } catch (error) {
             console.error("Error submitting RSVP:", error);
-            document.getElementById("confirmationMessage").textContent = "Error submitting RSVP.";
+            document.getElementById("confirmationMessage").textContent = "Error submitting RSVP. Contact administration.";
         }
     });
 
