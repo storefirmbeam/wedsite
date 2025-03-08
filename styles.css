@@ -36,6 +36,98 @@ header .countdown {
     color: #ffcc00;
 }
 
+/* RSVP Button */
+#rsvpButton {
+    display: block;
+    margin: 20px auto;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    color: white;
+    background-color: #0056b3;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#rsvpButton:hover {
+    background-color: #003f7f;
+}
+
+/* RSVP Modal Styling */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Background overlay */
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 15% auto; /* Center modal */
+    padding: 20px;
+    border-radius: 8px;
+    width: 40%;
+    text-align: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+/* Ensure modal appears */
+.modal.show {
+    display: block !important;
+}
+
+/* Close Button */
+.close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: red;
+}
+
+/* Input and Buttons inside Modal */
+.modal-content input, 
+.modal-content select, 
+.modal-content textarea {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.modal-content button {
+    width: 50%;
+    padding: 12px;
+    font-size: 1rem;
+    color: white;
+    background-color: #0056b3;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.modal-content button:hover {
+    background-color: #003f7f;
+}
+
+/* "Guest ID Verified & RSVP Already message style" */
+.modal-content p {
+    font-size: 1rem;
+}
+
 /* Navigation Bar */
 nav {
     background-color: #fff;
@@ -211,8 +303,8 @@ footer {
 }
 
 
-/*Wedding Party*/
-#wedding-party {
+/*Information Page*/
+#info {
     text-align: center;
     padding: 50px 20px;
     background-color: #fff;
@@ -223,7 +315,7 @@ footer {
 }
 
 
-#wedding-party p {
+#info p {
     font-size: 1.2rem;
     color: #555;
     line-height: 1.6;
@@ -281,6 +373,24 @@ footer {
 
 
 #registry p {
+    font-size: 1.2rem;
+    color: #555;
+    line-height: 1.6;
+}
+
+/*Know Before You Go Page*/
+#kbyg {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #fff;
+    max-width: 800px;
+    margin: 0 auto;
+    /*box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);*/
+    border-radius: 10px;
+}
+
+
+#kbyg p {
     font-size: 1.2rem;
     color: #555;
     line-height: 1.6;

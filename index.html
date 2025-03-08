@@ -24,10 +24,11 @@
             <li><a href="index.html">Home</a></li>
             <li><a href="our-story.html">Our Story</a></li>
             <li><a href="photos.html">Photos</a></li>
-            <li><a href="wedding-party.html">Wedding Party</a></li>
-            <li><a href="qa.html">Q & A</a></li>
-            <li><a href="travel.html">Travel</a></li>
             <li><a href="registry.html">Registry</a></li>
+            <li><a href="info.html">Info</a></li>
+            <li class="restricted" style="display: none;"><a href="travel.html">Travel</a></li>
+            <li class="restricted" style="display: none;"><a href="qa.html">Q & A</a></li>
+            <li class="restricted" style="display: none;"><a href="kbyg.html">Know Before You Go</a></li>
         </ul>
     </nav>
 
@@ -36,34 +37,43 @@
         <section class="main-section">
             <img src="propasl.h" alt="Engagement Photo" class="engagement-photo">
             <p class="quote">"We're so excited to share this journey with you!"</p>
+            <button id="rsvpButton">RSVP</button>
         </section>
-    
-        <!-- RSVP Form 
-        <section id="rsvp">
-            <h2>RSVP</h2>
+    </main>
+
+    <!-- RSVP Modal (Guest ID Input) -->
+    <div id="rsvpModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Enter Your Guest ID</h2>
+            <form id="guestIDForm">
+                <input type="text" id="guestID" placeholder="Guest ID" required>
+                <button type="submit" id="verifyGuest">Submit</button>
+            </form>
+            <p id="rsvpMessage"></p>
+        </div>
+    </div>
+
+    <!-- RSVP Confirmation Modal (After Verification) -->
+    <div id="rsvpFormModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>RSVP Confirmation</h2>
             <form id="rsvpForm">
-                <label for="guest_id">Guest ID:</label>
-                <input type="text" id="guest_id" name="guest_id" required>
-    
                 <label for="attending">Will you attend?</label>
                 <select id="attending" name="attending" required>
                     <option value="1">Yes, I'm attending</option>
                     <option value="0">No, I can't make it</option>
                 </select>
-    
                 <label for="guest_count">Number of Guests:</label>
                 <input type="number" id="guest_count" name="guest_count" min="1" required>
-    
                 <label for="message">Leave a message:</label>
                 <textarea id="message" name="message" placeholder="Optional"></textarea>
-    
                 <button type="submit">Submit RSVP</button>
             </form>
-            <p id="rsvpMessage"></p>
-        </section>
-        -->
-    </main>
-    
+            <p id="confirmationMessage"></p>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer>
