@@ -31,15 +31,44 @@
         </ul>
     </nav>
 
-    
-
     <!-- Main Content -->
     <main>
         <section class="main-section">
             <img src="propasl.h" alt="Engagement Photo" class="engagement-photo">
             <p class="quote">"We're so excited to share this journey with you!"</p>
         </section>
+    
+        <!-- RSVP Form -->
+        <section id="rsvp">
+            <h2>RSVP</h2>
+            <form id="rsvpForm">
+                <label for="guest_id">Guest ID:</label>
+                <input type="text" id="guest_id" name="guest_id" required>
+    
+                <label for="attending">Will you attend?</label>
+                <select id="attending" name="attending" required>
+                    <option value="1">Yes, I'm attending</option>
+                    <option value="0">No, I can't make it</option>
+                </select>
+    
+                <label for="guest_count">Number of Guests:</label>
+                <input type="number" id="guest_count" name="guest_count" min="1" required>
+    
+                <label for="message">Leave a message:</label>
+                <textarea id="message" name="message" placeholder="Optional"></textarea>
+    
+                <button type="submit">Submit RSVP</button>
+            </form>
+            <p id="rsvpMessage"></p>
+        </section>
+    
+        <!-- Q&A Section -->
+        <section id="qna">
+            <h2>Q&A</h2>
+            <p>Frequently asked questions will appear here!</p>
+        </section>
     </main>
+    
 
     <!-- Footer -->
     <footer>
