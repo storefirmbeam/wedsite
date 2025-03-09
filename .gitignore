@@ -1,3 +1,9 @@
+/local_api
+/api
+.env
+/vendor
+composer.phar
+composer/cache/
 rsvp.php
 config.php
 get_qna.php

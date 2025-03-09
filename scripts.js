@@ -64,7 +64,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         try {
-            let response = await fetch("http://localhost:8000/verify_guest.php", {
+            //let response = await fetch("http://localhost:8000/local_api/verify_guest.php", { //Keep this line for local testing
+            let response = await fetch("https://darbyandcole.site/verify_guest.php", {
                 method: "POST",
                 headers: { "Content-Type": "application/x-www-form-urlencoded" },
                 body: `guest_id=${guestID}`
@@ -96,7 +97,8 @@ document.addEventListener("DOMContentLoaded", function () {
         formData.append("guest_id", sessionStorage.getItem("guestID"));
 
         try {
-            let response = await fetch("http://localhost:8000/rsvp.php", {
+            //let response = await fetch("http://localhost:8000/local_api/rsvp.php", { //Keep this line commented out
+            let response = await fetch("https://darbyandcole.site/rsvp.php", {
                 method: "POST",
                 body: formData
             });
