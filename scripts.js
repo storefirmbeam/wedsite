@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-   updateRestrictedAccess(); // Ensure this runs on every page load
+    updateRestrictedAccess(); // Ensure this runs on every page load
 
     // Countdown Timer
     const weddingDate = new Date("May 30, 2026 00:00:00");
@@ -64,20 +64,19 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         try {
-            //let response = await fetch("http://localhost:8000/local_api/verify_guest.php", { //Keep this line for local testing
             let response = await fetch("https://darbyandcole.site/verify_guest.php", {
                 method: "POST",
                 headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                body: `guest_id=${guestID}`
+                body: `guest_id=${encodeURIComponent(guestID)}`
             });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
 
             let result = await response.json();
 
             if (result.valid) {
-                sessionStorage.setItem("guestID", guestID);
-                if (result.first_name && result.last_name) {
-                    sessionStorage.setItem("guestName", `${result.first_name} ${result.last_name}`);
-                }
                 document.getElementById("rsvpMessage").textContent = "Guest ID verified!";
                 rsvpModal.classList.remove("show");
                 rsvpFormModal.classList.add("show");
@@ -94,10 +93,8 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("rsvpForm").addEventListener("submit", async function(event) {
         event.preventDefault();
         let formData = new FormData(this);
-        formData.append("guest_id", sessionStorage.getItem("guestID"));
 
         try {
-            //let response = await fetch("http://localhost:8000/local_api/rsvp.php", { //Keep this line commented out
             let response = await fetch("https://darbyandcole.site/rsvp.php", {
                 method: "POST",
                 body: formData
@@ -107,7 +104,6 @@ document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("confirmationMessage").textContent = result.message;
 
             if (result.success) {
-                sessionStorage.setItem("rsvpStatus", "confirmed");
                 updateRestrictedAccess();
                 setTimeout(() => {
                     rsvpFormModal.classList.remove("show");
@@ -121,22 +117,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Function to update restricted page access
     function updateRestrictedAccess() {
-        const guestID = sessionStorage.getItem("guestID");
-        const rsvpStatus = sessionStorage.getItem("rsvpStatus");
-    
-        if (guestID) {
-            console.log("User is a verified guest...")
-            document.querySelectorAll(".restricted").forEach(item => {
-                item.style.display = "block"; // Show restricted menu items
-            });
-        } else {
-            document.querySelectorAll(".restricted").forEach(item => {
-                item.style.display = "none"; // Hide restricted menu items if not verified
-            });
-        }
+        fetch("https://darbyandcole.site/check_session.php")
+            .then(response => response.json())
+            .then(data => {
+                if (data.guestID) {
+                    document.querySelectorAll(".restricted").forEach(item => {
+                        item.style.display = "block"; // Show restricted menu items
+                    });
+                } else {
+                    document.querySelectorAll(".restricted").forEach(item => {
+                        item.style.display = "none"; // Hide restricted menu items if not verified
+                    });
+                }
+            })
+            .catch(error => console.error("Error checking session:", error));
     }
 
-    if (sessionStorage.getItem("rsvpStatus") === "confirmed") {
-        updateRestrictedAccess();
-    }
+    updateRestrictedAccess();
 });
