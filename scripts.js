@@ -137,6 +137,4 @@ document.addEventListener("DOMContentLoaded", function () {
             })
             .catch(error => console.error("Error checking session:", error));
     }
-
-    // Removed redundant call to updateRestrictedAccess() good catch
 });
