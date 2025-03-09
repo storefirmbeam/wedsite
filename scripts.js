@@ -118,7 +118,12 @@ document.addEventListener("DOMContentLoaded", function () {
     // Function to update restricted page access
     function updateRestrictedAccess() {
         fetch("https://darbyandcole.site/check_session.php")
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
             .then(data => {
                 if (data.guestID) {
                     document.querySelectorAll(".restricted").forEach(item => {
@@ -133,5 +138,5 @@ document.addEventListener("DOMContentLoaded", function () {
             .catch(error => console.error("Error checking session:", error));
     }
 
-    updateRestrictedAccess();
+    // Removed redundant call to updateRestrictedAccess()
 });

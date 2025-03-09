@@ -1,10 +1,2 @@
-/local_api
-/api
-.env
-/vendor
-composer.phar
-composer/cache/
-rsvp.php
-config.php
-get_qna.php
-verify_guest.php
+/local_api/
+db_config.php
