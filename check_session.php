@@ -1,5 +1,6 @@
 <?php
-session_start();
+require_once 'config.php'; // This ensures the session starts correctly
+
 header('Content-Type: application/json');
 
 $response = [

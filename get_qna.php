@@ -1,6 +1,5 @@
 <?php
-session_start();
-include 'config.php';
+require_once 'config.php'; // This ensures the session starts correctly
 
 $sql = "SELECT question, admin_response FROM qa WHERE approved = 1";
 $result = $conn->query($sql);

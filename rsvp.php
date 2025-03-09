@@ -1,6 +1,6 @@
 <?php
-session_start();
-require 'config.php'; // Database connection & CORS headers applied
+require_once 'config.php'; // This ensures the session starts correctly
+
 
 $conn = getDatabaseConnection(); // Use centralized function
 

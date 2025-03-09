@@ -1,7 +1,7 @@
 <?php
 session_start();
 // Securely include the database credentials from outside public_html
-require_once('/home/u115723261/secure_config/db_config.php');
+require_once('/home/u115723261/domains/darbyandcole.site/secure_config/db_config.php');
 
 $servername = DB_HOST;
 $username = DB_USER;

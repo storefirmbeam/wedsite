@@ -1,6 +1,5 @@
 <?php
-session_start();
-require 'config.php'; // Database connection & CORS headers applied
+require_once 'config.php'; // Database connection & CORS headers applied
 
 $conn = getDatabaseConnection(); // Use centralized function
 
@@ -21,6 +20,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     $stmt = $conn->prepare("SELECT first_name, last_name FROM guests WHERE guest_id = ?");
+    if ($stmt === false) {
+        echo json_encode(["valid" => false, "message" => "Database error: " . $conn->error]);
+        exit;
+    }
     $stmt->bind_param("s", $guest_id);
     $stmt->execute();
     $result = $stmt->get_result();
