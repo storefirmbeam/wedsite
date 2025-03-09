@@ -143,8 +143,8 @@ nav {
     cursor: pointer;
     position: absolute;
     top: 15px;
-    left: 50%;
-    transform: translateX(-50%);
+    right: 15px; /* Changed from left: 50% to right: 15px */
+    transform: translateX(0); /* Removed translateX(-50%) */
     background: none;
     border: none;
 }
@@ -199,21 +199,36 @@ nav ul li a:hover {
         display: block;
     }
 
+    nav {
+        position: fixed; /* Make the navigation bar fixed */
+        top: 0; /* Position it at the top */
+        width: 100%; /* Full width */
+        z-index: 1000; /* Ensure it is above other content */
+    }
+
     nav ul {
         display: none;
         flex-direction: column;
         background: #fff;
         position: absolute;
         top: 60px;
-        left: 0;
-        width: 100%;
+        left: 50%; /* Center horizontally */
+        transform: translateX(-50%); /* Center horizontally */
+        width: 80%; /* Smaller width */
         text-align: center;
         max-height: 80vh; /* Prevent overflow */
         overflow-y: auto; /* Enable scrolling */
+        border: 1px solid #ccc; /* Outline */
+        border-radius: 10px; /* Rounded edges */
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
     }
 
     nav ul.show {
         display: flex;
+    }
+
+    main {
+        margin-top: 60px; /* Add margin to avoid content being hidden behind the fixed nav */
     }
 }
 
