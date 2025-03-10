@@ -23,9 +23,13 @@ document.addEventListener("DOMContentLoaded", function () {
     updateCountdown();
 
     // Mobile Menu Toggle
-    document.querySelector(".menu-toggle").addEventListener("click", function () {
-        document.getElementById("nav-menu").classList.toggle("show");
-    });
+    // Check if the menu toggle button exists before adding an event listener
+    const menuToggle = document.querySelector(".menu-toggle");
+    if (menuToggle) {
+        menuToggle.addEventListener("click", function () {
+            document.getElementById("nav-menu").classList.toggle("show");
+        });
+    }
 
     // RSVP Button Modal Handling
     const rsvpButton = document.getElementById("rsvpButton");
@@ -33,9 +37,13 @@ document.addEventListener("DOMContentLoaded", function () {
     const rsvpFormModal = document.getElementById("rsvpFormModal");
     const closeButtons = document.querySelectorAll(".close");
 
-    rsvpButton.addEventListener("click", () => {
-        rsvpModal.classList.add("show");
-    });
+    // Fix for RSVP Button (if it exists on the page)
+    if (rsvpButton) {
+        rsvpButton.addEventListener("click", () => {
+            const rsvpModal = document.getElementById("rsvpModal");
+            if (rsvpModal) rsvpModal.classList.add("show");
+        });
+    }
 
     closeButtons.forEach(button => {
         button.addEventListener("click", () => {
