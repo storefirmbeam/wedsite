@@ -83,11 +83,18 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             let result = await response.json();
-
+            
+            // If valid guest ID, show RSVP form unless user already submitted rsvp
             if (result.valid) {
-                document.getElementById("rsvpMessage").textContent = "Guest ID verified!";
-                rsvpModal.classList.remove("show");
-                rsvpFormModal.classList.add("show");
+                if (result.rsvped) {
+                    // If the guest has already RSVP'd, refresh the page to load restricted content
+                    location.reload();
+                } else {
+                    // If not RSVP'd, show the RSVP modal
+                    document.getElementById("rsvpMessage").textContent = "Guest ID verified!";
+                    rsvpModal.classList.remove("show");
+                    rsvpFormModal.classList.add("show");
+                }
             } else {
                 document.getElementById("rsvpMessage").textContent = "Invalid Guest ID. Please try again.";
             }
@@ -121,6 +128,27 @@ document.addEventListener("DOMContentLoaded", function () {
             console.error("Error submitting RSVP:", error);
             document.getElementById("confirmationMessage").textContent = "Error submitting RSVP. Contact administration.";
         }
+    });
+
+    // Logout functionality
+    document.getElementById("logout-btn").addEventListener("click", function () {
+        fetch("https://darbyandcole.site/logout.php", {
+            method: "POST",
+            credentials: "include"
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Hide restricted pages and logout button
+                document.querySelectorAll(".restricted").forEach(item => {
+                    item.style.display = "none";
+                });
+                document.getElementById("logout-btn").style.display = "none";
+            } else {
+                alert("Logout failed. Try again.");
+            }
+        })
+        .catch(error => console.error("Error during logout:", error));
     });
 
     // Function to update restricted page access
