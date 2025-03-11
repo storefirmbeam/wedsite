@@ -62,73 +62,79 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // Guest ID Verification
-    document.getElementById("verifyGuest").addEventListener("click", async function (event) {
-        event.preventDefault();
-        const guestID = document.getElementById("guestID").value;
+    const verifyGuestBtn = document.getElementById("verifyGuest");
+    if (verifyGuestBtn) {
+        verifyGuestBtn.addEventListener("click", async function (event) {
+            event.preventDefault();
+            const guestID = document.getElementById("guestID").value;
 
-        if (!guestID) {
-            document.getElementById("rsvpMessage").textContent = "Please enter a Guest ID.";
-            return;
-        }
-
-        try {
-            let response = await fetch("https://darbyandcole.site/verify_guest.php", {
-                method: "POST",
-                headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                body: `guest_id=${encodeURIComponent(guestID)}`
-            });
-
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+            if (!guestID) {
+                document.getElementById("rsvpMessage").textContent = "Please enter a Guest ID.";
+                return;
             }
 
-            let result = await response.json();
-            
-            // If valid guest ID, show RSVP form unless user already submitted rsvp
-            if (result.valid) {
-                if (result.rsvped) {
-                    // If the guest has already RSVP'd, refresh the page to load restricted content
-                    location.reload();
-                } else {
-                    // If not RSVP'd, show the RSVP modal
-                    document.getElementById("rsvpMessage").textContent = "Guest ID verified!";
-                    rsvpModal.classList.remove("show");
-                    rsvpFormModal.classList.add("show");
+            try {
+                let response = await fetch("https://darbyandcole.site/verify_guest.php", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                    body: `guest_id=${encodeURIComponent(guestID)}`
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
                 }
-            } else {
-                document.getElementById("rsvpMessage").textContent = "Invalid Guest ID. Please try again.";
+
+                let result = await response.json();
+                
+                // If valid guest ID, show RSVP form unless user already submitted rsvp
+                if (result.valid) {
+                    if (result.rsvped) {
+                        // If the guest has already RSVP'd, refresh the page to load restricted content
+                        location.reload();
+                    } else {
+                        // If not RSVP'd, show the RSVP modal
+                        document.getElementById("rsvpMessage").textContent = "Guest ID verified!";
+                        rsvpModal.classList.remove("show");
+                        rsvpFormModal.classList.add("show");
+                    }
+                } else {
+                    document.getElementById("rsvpMessage").textContent = "Invalid Guest ID. Please try again.";
+                }
+            } catch (error) {
+                console.error("Error verifying Guest ID:", error);
+                document.getElementById("rsvpMessage").textContent = "Error contacting server. Contact administration.";
             }
-        } catch (error) {
-            console.error("Error verifying Guest ID:", error);
-            document.getElementById("rsvpMessage").textContent = "Error contacting server. Contact administration.";
-        }
-    });
+        });
+    }
 
     // RSVP Form Submission
-    document.getElementById("rsvpForm").addEventListener("submit", async function(event) {
-        event.preventDefault();
-        let formData = new FormData(this);
+    const rsvpForm = document.getElementById("rsvpForm");
+    if (rsvpForm) {
+        rsvpForm.addEventListener("submit", async function(event) {
+            event.preventDefault();
+            let formData = new FormData(this);
 
-        try {
-            let response = await fetch("https://darbyandcole.site/rsvp.php", {
-                method: "POST",
-                body: formData
-            });
+            try {
+                let response = await fetch("https://darbyandcole.site/rsvp.php", {
+                    method: "POST",
+                    body: formData
+                });
 
-            let result = await response.json();
-            document.getElementById("confirmationMessage").textContent = result.message;
+                let result = await response.json();
+                document.getElementById("confirmationMessage").textContent = result.message;
 
-            if (result.success) {
-                updateRestrictedAccess();
-                setTimeout(() => {
-                    rsvpFormModal.classList.remove("show");
-                }, 1500);
+                if (result.success) {
+                    updateRestrictedAccess();
+                    setTimeout(() => {
+                        rsvpFormModal.classList.remove("show");
+                    }, 1500);
+                }
+            } catch (error) {
+                console.error("Error submitting RSVP:", error);
+                document.getElementById("confirmationMessage").textContent = "Error submitting RSVP. Contact administration.";
             }
-        } catch (error) {
-            console.error("Error submitting RSVP:", error);
-            document.getElementById("confirmationMessage").textContent = "Error submitting RSVP. Contact administration.";
-        }
-    });
+        });
+    }
 
     // Logout functionality
     document.getElementById("logout-btn").addEventListener("click", function () {

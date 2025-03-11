@@ -1,5 +1,10 @@
 <?php
 session_start();
+
+// Enable error reporting for debugging
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 // Securely include the database credentials from outside public_html
 require_once('/home/u115723261/domains/darbyandcole.site/secure_config/db_config.php');
 
