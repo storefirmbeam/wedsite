@@ -173,10 +173,16 @@ document.addEventListener("DOMContentLoaded", function () {
                     document.querySelectorAll(".restricted").forEach(item => {
                         item.style.display = "block"; // Show restricted menu items
                     });
+    
+                    // Show the logout button when logged in
+                    document.getElementById("logout-btn").style.display = "block"; 
                 } else {
                     document.querySelectorAll(".restricted").forEach(item => {
                         item.style.display = "none"; // Hide restricted menu items if not verified
                     });
+    
+                    // Hide the logout button if not logged in
+                    document.getElementById("logout-btn").style.display = "none"; 
                 }
             })
             .catch(error => console.error("Error checking session:", error));
