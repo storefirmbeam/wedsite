@@ -137,26 +137,28 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Logout functionality
-    document.getElementById("logout-btn").addEventListener("click", function () {
-        fetch("https://darbyandcole.site/logout.php", {
-            method: "POST",
-            credentials: "include"
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                // Hide restricted pages and logout button
-                document.querySelectorAll(".restricted").forEach(item => {
-                    item.style.display = "none";
-                });
-                document.getElementById("logout-btn").style.display = "none";
-            } else {
-                alert("Logout failed. Try again.");
-            }
-        })
-        .catch(error => console.error("Error during logout:", error));
-    });
-
+    const logout = document.getElementById("logout-btn");
+    if (logout) {
+        logout.addEventListener("click", function () {
+            fetch("https://darbyandcole.site/logout.php", {
+                method: "POST",
+                credentials: "include"
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Hide restricted pages and logout button
+                    document.querySelectorAll(".restricted").forEach(item => {
+                        item.style.display = "none";
+                    });
+                    document.getElementById("logout-btn").style.display = "none";
+                } else {
+                    alert("Logout failed. Try again.");
+                }
+            })
+            .catch(error => console.error("Error during logout:", error));
+        });
+    }
     // Function to update restricted page access
     function updateRestrictedAccess() {
         fetch("https://darbyandcole.site/check_session.php")
