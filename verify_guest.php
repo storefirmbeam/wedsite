@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $guest = $result->fetch_assoc();
 
         // Check if Guest ID exists in the rsvp table
-        $rsvp_stmt = $conn->prepare("SELECT COUNT(*) as rsvp_count FROM rsvp WHERE guest_id = ?");
+        $rsvp_stmt = $conn->prepare("SELECT COUNT(*) as rsvp_count FROM rsvps WHERE guest_id = ?");
         $rsvp_stmt->bind_param("s", $guest_id);
         $rsvp_stmt->execute();
         $rsvp_result = $rsvp_stmt->get_result();
