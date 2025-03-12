@@ -8,15 +8,16 @@
 /* Body and basic layout */
 body {
     font-family: Arial, sans-serif;
-    background-color: #fff;
+    background-color: #f2f1ee;
     color: #333;
 }
 
 /* Header Styling */
 header {
-    background-color: #fff;
+    background-color: #f2f1ee;
     text-align: center;
     padding: 50px 0;
+    position: relative; /* Add relative positioning */
 }
 
 header h1 {
@@ -34,6 +35,68 @@ header .countdown {
     font-weight: bold;
     margin-top: 10px;
     color: #ffcc00;
+}
+
+/* Hamburger Menu Styling */
+#checkbox {
+    display: none;
+}
+
+.toggle {
+    position: relative;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    display: none; /* Hide by default */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    transition-duration: .5s;
+    top: 15px;
+    left: 15px;
+}
+
+.bars {
+    width: 100%;
+    height: 4px;
+    background-color: #8898c4;
+    border-radius: 4px;
+}
+
+#bar2 {
+    transition-duration: .8s;
+}
+
+#bar1,#bar3 {
+    width: 70%;
+}
+
+#checkbox:checked + .toggle .bars {
+    position: absolute;
+    transition-duration: .5s;
+}
+
+#checkbox:checked + .toggle #bar2 {
+    transform: scaleX(0);
+    transition-duration: .5s;
+}
+
+#checkbox:checked + .toggle #bar1 {
+    width: 100%;
+    transform: rotate(45deg);
+    transition-duration: .5s;
+}
+
+#checkbox:checked + .toggle #bar3 {
+    width: 100%;
+    transform: rotate(-45deg);
+    transition-duration: .5s;
+}
+
+#checkbox:checked + .toggle {
+    transition-duration: .5s;
+    transform: rotate(180deg);
 }
 
 /* RSVP Button */
@@ -67,7 +130,7 @@ header .countdown {
 }
 
 .modal-content {
-    background-color: #fff;
+    background-color: #f2f1ee;
     margin: 15% auto; /* Center modal */
     padding: 20px;
     border-radius: 8px;
@@ -130,23 +193,10 @@ header .countdown {
 
 /* Navigation Bar */
 nav {
-    background-color: #fff;
+    background-color: #f2f1ee;
     padding: 10px 0;
     position: relative;
-}
-
-/* Menu Toggle Button (Hamburger Icon) */
-.menu-toggle {
-    display: none;
-    font-size: 2rem;
-    color: #000;
-    cursor: pointer;
-    position: absolute;
-    top: 15px;
-    right: 15px; /* Changed from left: 50% to right: 15px */
-    transform: translateX(0); /* Removed translateX(-50%) */
-    background: none;
-    border: none;
+    text-align: center; /* Center content */
 }
 
 /* Default Navigation Bar */
@@ -176,6 +226,13 @@ nav ul li a:hover {
     color: #ffcc00;
 }
 
+/* Add logo styling */
+nav .logo {
+    height: 50px; /* Adjust height as needed */
+    margin: -20px auto 0; /* Move the logo up by 10px */
+    display: none; /* Hide by default */
+}
+
 /* Dynamically stack buttons as screen shrinks, keeping second row tighter */
 @media (max-width: 900px) {
     nav ul {
@@ -199,6 +256,10 @@ nav ul li a:hover {
         display: block;
     }
 
+    .toggle {
+        display: flex; /* Show on small screens */
+    }
+
     nav {
         position: fixed; /* Make the navigation bar fixed */
         top: 0; /* Position it at the top */
@@ -206,10 +267,14 @@ nav ul li a:hover {
         z-index: 1000; /* Ensure it is above other content */
     }
 
+    nav .logo {
+        display: block; /* Show logo on small screens */
+    }
+
     nav ul {
         display: none;
         flex-direction: column;
-        background: #fff;
+        background: #f2f1ee;
         position: absolute;
         top: 60px;
         left: 50%; /* Center horizontally */
@@ -223,7 +288,8 @@ nav ul li a:hover {
         box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
     }
 
-    nav ul.show {
+    /* Show menu when checkbox is checked */
+    #checkbox:checked ~ #nav-menu {
         display: flex;
     }
 
@@ -235,7 +301,7 @@ nav ul li a:hover {
 /* Main Content */
 main {
     padding: 40px 20px;
-    background-color: #fff;
+    background-color: #f2f1ee;
     margin-top: 20px;
 }
 
@@ -250,7 +316,7 @@ section h2 {
 
 /* Footer Styling */
 footer {
-    background-color: #fff;
+    background-color: #f2f1ee;
     color: #000;
     text-align: center;
     padding: 20px;
@@ -285,7 +351,7 @@ footer {
 #our-story {
     text-align: center;
     padding: 50px 20px;
-    background-color: #fff;
+    background-color: #f2f1ee;
     max-width: 800px;
     margin: 0 auto;
     /*box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);*/
@@ -303,7 +369,7 @@ footer {
 #photos {
     text-align: center;
     padding: 50px 20px;
-    background-color: #fff;
+    background-color: #f2f1ee;
     max-width: 800px;
     margin: 0 auto;
     /*box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);*/
@@ -322,7 +388,7 @@ footer {
 #info {
     text-align: center;
     padding: 50px 20px;
-    background-color: #fff;
+    background-color: #f2f1ee;
     max-width: 800px;
     margin: 0 auto;
     /*box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);*/
@@ -341,7 +407,7 @@ footer {
 #qa {
     text-align: center;
     padding: 50px 20px;
-    background-color: #fff;
+    background-color: #f2f1ee;
     max-width: 800px;
     margin: 0 auto;
     /*box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);*/
@@ -360,7 +426,7 @@ footer {
 #travel {
     text-align: center;
     padding: 50px 20px;
-    background-color: #fff;
+    background-color: #f2f1ee;
     max-width: 800px;
     margin: 0 auto;
     /*box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);*/
@@ -379,7 +445,7 @@ footer {
 #registry {
     text-align: center;
     padding: 50px 20px;
-    background-color: #fff;
+    background-color: #f2f1ee;
     max-width: 800px;
     margin: 0 auto;
     /*box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);*/
@@ -397,7 +463,7 @@ footer {
 #kbyg {
     text-align: center;
     padding: 50px 20px;
-    background-color: #fff;
+    background-color: #f2f1ee;
     max-width: 800px;
     margin: 0 auto;
     /*box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);*/
