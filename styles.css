@@ -329,8 +329,8 @@ nav .logo {
 
     .proposal-banner {
         display: block;
-        max-width: 100%;
-        height: auto;
+        width: 100%; /* Ensure it takes full width */
+        height: auto; /* Maintain aspect ratio */
         margin: 0 auto;
     }
 
