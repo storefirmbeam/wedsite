@@ -233,6 +233,25 @@ nav .logo {
     display: none; /* Hide by default */
 }
 
+/* Default: Show floral banner, hide proposal banner */
+.header-image {
+    display: none; /* Hide proposal image by default */
+}
+
+.desktop-banner {
+    display: block; /* Show floral banner by default */
+}
+
+.floral-banner {
+    max-width: 100%;
+    height: auto;
+}
+
+.proposal-banner {
+    max-width: 100%;
+    height: auto;
+}
+
 /* Dynamically stack buttons as screen shrinks, keeping second row tighter */
 @media (max-width: 900px) {
     nav ul {
@@ -296,6 +315,34 @@ nav .logo {
     main {
         margin-top: 60px; /* Add margin to avoid content being hidden behind the fixed nav */
     }
+
+    /* Hide floral banner */
+    .desktop-banner {
+        display: none;
+    }
+
+    /* Show proposal image at the top */
+    .header-image {
+        display: block;
+        text-align: center;
+    }
+
+    .proposal-banner {
+        display: block;
+        max-width: 100%;
+        height: auto;
+        margin: 0 auto;
+    }
+
+    /* Ensure header text is aligned properly */
+    .header-text {
+        text-align: center;
+        padding-top: 10px;
+    }
+
+    .main-section img {
+        display: none;
+    }
 }
 
 /* Main Content */
@@ -308,6 +355,7 @@ main {
 section {
     margin-bottom: 40px;
 }
+
 
 section h2 {
     font-size: 2rem;
