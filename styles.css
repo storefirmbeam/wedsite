@@ -12,29 +12,44 @@ body {
     color: #333;
 }
 
-/* Header Styling */
+/* Header Styling (with image) */
 header {
     background-color: #f2f1ee;
     text-align: center;
     padding: 50px 0;
     position: relative; /* Add relative positioning */
 }
+/* Header when there's no image */
+.no-image-header {
+    padding-top: 80px; /* Increase padding so text isn’t covered */
+    padding-bottom: 10px;
+}
 
 header h1 {
-    font-size: 3rem;
-    color: #0056b3;
+    color: #d1ab78;
+    font-family: 'Monsieur La Doulaise', cursive;
+    font-size: 5rem;
+    font-weight: 400;
 }
 
 header h2 {
+    font-family: 'Playfair Display SC', serif;
     font-size: 1.5rem;
-    color: #666;
+    font-weight: 400;
+    color: #8898c4;
 }
 
-header .countdown {
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin-top: 10px;
-    color: #ffcc00;
+header p {
+    font-family: 'Playfair Display SC', serif;
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: #8898c4;
+}
+
+.header-text h1 span.ampersand {
+    font-size: 2.5rem; /* Smaller font size for the "&" symbol */
+    position: relative;
+    top: -5px; /* Move the "&" symbol higher */
 }
 
 /* Hamburger Menu Styling */
@@ -105,16 +120,18 @@ header .countdown {
     margin: 20px auto;
     padding: 15px 30px;
     font-size: 1.2rem;
-    color: white;
-    background-color: #0056b3;
+    font-family: 'Playfair Display SC', serif; /* Change font */
+    color: #f2f1ee; /* Change font color to blue */
+    background-color: #f0a7a7; /* Change button color to gold */
     border: none;
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    margin-top: 50px;
 }
 
 #rsvpButton:hover {
-    background-color: #003f7f;
+    background-color: #8898c4; /* Darker shade of gold for hover */
 }
 
 /* RSVP Modal Styling */
@@ -214,16 +231,25 @@ nav ul li {
     white-space: nowrap;
 }
 
+nav ul li.restricted {
+    flex-basis: 100%; /* Make restricted tabs start on a new row */
+    text-align: center; /* Center the restricted tabs */
+}
+
 nav ul li a {
-    color: #000;
     text-decoration: none;
-    font-size: 1.2rem;
-    padding: 8px 12px;
     display: block;
+    padding: 8px 12px;
+    font-family: 'Playfair Display SC', serif;
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: #8898c4;
+    transition: color 0.3s ease, transform 0.3s ease; /* Add transition for color and transform */
 }
 
 nav ul li a:hover {
-    color: #ffcc00;
+    color: #d1ab78; /* Change to your desired hover color */
+    transform: scale(1.1); /* Slightly enlarge the text on hover */
 }
 
 /* Add logo styling */
@@ -231,6 +257,7 @@ nav .logo {
     height: 50px; /* Adjust height as needed */
     margin: -20px auto 0; /* Move the logo up by 10px */
     display: none; /* Hide by default */
+    cursor: pointer; /* Indicate it is clickable */
 }
 
 /* Default: Show floral banner, hide proposal banner */
@@ -257,25 +284,8 @@ nav .logo {
     height: auto;
 }
 
-/* Dynamically stack buttons as screen shrinks, keeping second row tighter */
-@media (max-width: 900px) {
-    nav ul {
-        justify-content: flex-start;
-    }
-    
-    nav ul li {
-        flex: 1 1 auto; /* Items move dynamically */
-        text-align: center;
-    }
-    
-    /* Reduce spacing between second-row buttons */
-    nav ul li:nth-child(n+6) {
-        flex-basis: auto;
-    }
-}
-
 /* Small Screens (Switch to hamburger menu) */
-@media (max-width: 600px) {
+@media (max-width: 800px) {
     .menu-toggle {
         display: block;
     }
@@ -317,10 +327,6 @@ nav .logo {
         display: flex;
     }
 
-    main {
-        margin-top: 60px; /* Add margin to avoid content being hidden behind the fixed nav */
-    }
-
     /* Hide floral banner */
     .desktop-banner {
         display: none;
@@ -338,17 +344,66 @@ nav .logo {
         height: auto; /* Maintain aspect ratio */
         max-width: 100vw; /* Ensure it does not exceed the window size */
         margin: 0 auto;
+        position: relative; /* Ensure corner photos are positioned relative to this */
     }
 
-    /* Ensure header text is aligned properly */
+    .corner-photo {
+        position: relative; /* Change to relative positioning */
+        width: 40%; /* Adjust size as needed */
+        height: auto;
+        display: block; /* Ensure they are block elements */
+    }
+
+    .corner-photo.left {
+        position: absolute;
+        left: 1px;
+    }
+
+    .corner-photo.right {
+        position: absolute;
+        right: 1px;
+    }
+
     .header-text {
         text-align: center;
-        padding-top: 10px;
+        padding-top: 80px; /* Adjust padding */
+        margin-top: 20px; /* Add margin to avoid overlap with corner photos */
     }
 
-    .main-section img {
+    .header-text h1 {
+        font-family: 'Monsieur La Doulaise', cursive;
+        font-size: 5rem;
+        font-weight: 400;
+    }
+
+    .header-text h2 {
+        font-family: 'Playfair Display SC', serif;
+        font-size: 1.5rem;
+        font-weight: 400;
+        color: #8898c4;
+    }
+
+    .header-text p {
+        font-family: 'Playfair Display SC', serif;
+        font-size: 1.25rem;
+        font-weight: 400;
+        color: #8898c4;
+    }
+
+    .header-text h1 span.ampersand {
+        font-size: 2.5rem; /* Smaller font size for the "&" symbol */
+        position: relative;
+        top: -5px; /* Move the "&" symbol higher */
+    }
+
+    .main-section .engagement-photo {
         display: none;
     }
+
+    .main-section {
+        margin-top: -90px; /* Move up on mobile site */
+    }
+    
 }
 
 /* Main Content */
@@ -370,20 +425,55 @@ section h2 {
 
 /* Footer Styling */
 footer {
-    background-color: #f2f1ee;
+    background-color: #8898c4;
     color: #000;
     text-align: center;
     padding: 20px;
-    margin-top: 50px;
 }
 
+footer p {
+    margin: 0;
+    color: #f2f1ee;
+}
 
+/* Bible Verse Styling */
 .main-section {
-    text-align: center; /* Centers inline elements like images */
+    color: #8898c4;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-weight: 400;
 }
 
-.main-section p {
-    font-size: 1rem;
+.main-section img {
+    max-width: 100%; /* Ensure it scales properly */
+    height: auto;
+    max-width: 900px; /* Ensure it does not exceed 900px */
+    width: 100%; /* Ensure it adjusts with the window size */
+    position: relative;
+}
+
+.main-section .verse {
+    font-size: 1.2rem;
+    font-family: 'Playfair Display', serif;
+    margin-top: 50px;
+    max-width: 600px; /* Set a maximum width */
+    margin-left: auto; /* Center the text */
+    margin-right: auto; /* Center the text */
+    text-align: center; /* Ensure text is centered */
+    width: 100%;
+}
+
+.main-section .reference {
+    font-size: 1.4rem;
+    font-family: 'Playfair Display SC', serif;
+    margin-top: 20px;
+    max-width: 800px; /* Set a maximum width */
+    margin-left: auto; /* Center the text */
+    margin-right: auto; /* Center the text */
+    text-align: center; /* Ensure text is centered */
+    width: 100%;
 }
 
 .engagement-photo {
@@ -400,7 +490,6 @@ footer {
     height: auto;
 }
 
-
 /*Our story page*/
 #our-story {
     text-align: center;
@@ -408,16 +497,37 @@ footer {
     background-color: #f2f1ee;
     max-width: 800px;
     margin: 0 auto;
-    /*box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);*/
     border-radius: 10px;
 }
 
 #our-story p {
-    font-size: 1.2rem;
-    color: #555;
-    line-height: 1.6;
+    margin-bottom: 20px; /* Adjust the value as needed */
+    max-width: 700px;
+    position: relative;
+    margin-left: auto; /* Center horizontally */
+    margin-right: auto; /* Center horizontally */
 }
 
+#our-story h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #8898c4;
+    font-family: 'Playfair Display SC', serif;
+}
+.os-paragraph1, .os-paragraph2, .os-paragraph3, .os-paragraph4 {
+    font-size: 1.2rem;
+    color: #8898c4;
+    line-height: 1.6;
+    font-family: 'Playfair Display', serif;
+}
+
+.os-paragraph4 {
+    margin-bottom: 0px; /* No extra margin for the last paragraph */
+}
+
+/***********************************************************************************/
+/*Remove as pages are updated (only update above the line)*/
+/***********************************************************************************/
 
 /*Photos page*/
 #photos {
