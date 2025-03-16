@@ -25,6 +25,12 @@ header {
     padding-bottom: 10px;
 }
 
+.no-image-header h1 span.ampersand {
+    font-size: 2.5rem; /* Smaller font size for the "&" symbol */
+    position: relative;
+    top: -5px; /* Move the "&" symbol higher */
+}
+
 header h1 {
     color: #d1ab78;
     font-family: 'Monsieur La Doulaise', cursive;
