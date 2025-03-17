@@ -5,11 +5,17 @@
     box-sizing: border-box;
 }
 
+html, body {
+    height: 100%; /* Ensure the body takes full height */
+}
+
 /* Body and basic layout */
 body {
     font-family: Arial, sans-serif;
     background-color: #f2f1ee;
     color: #333;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Header Styling (with image) */
@@ -36,6 +42,9 @@ header h1 {
     font-family: 'Monsieur La Doulaise', cursive;
     font-size: 5rem;
     font-weight: 400;
+    white-space: nowrap; /* Prevent text from wrapping */
+    overflow: hidden; /* Hide overflow */
+    text-overflow: ellipsis; /* Add ellipsis for overflow text */
 }
 
 header h2 {
@@ -154,13 +163,16 @@ header p {
 
 .modal-content {
     background-color: #f2f1ee;
-    margin: 15% auto; /* Center modal */
+    margin: auto; /* Center modal horizontally */
     padding: 20px;
     border-radius: 8px;
-    width: 40%;
+    width: 50%; /* Change width to 90% */
+    max-width: 400px; /* Set a maximum width */
     text-align: center;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
     position: relative;
+    top: 50%; /* Position from the top */
+    transform: translateY(-50%); /* Center vertically */
 }
 
 /* Ensure modal appears */
@@ -175,10 +187,11 @@ header p {
     right: 15px;
     font-size: 1.5rem;
     cursor: pointer;
+    color: #8898c4;
 }
 
 .close:hover {
-    color: red;
+    color: #f0a7a7;
 }
 
 /* Input and Buttons inside Modal */
@@ -188,17 +201,27 @@ header p {
     width: 90%;
     padding: 10px;
     margin: 10px 0;
-    border: 1px solid #ccc;
+    border: 1px solid #8898c4;
     border-radius: 5px;
     font-size: 1rem;
+    background-color: #ffffff;
+    text-align: center;
+}
+
+.modal-content input:focus {
+    border-color: #8898c4; /* Change to your desired border color */
+    color: #8898c4; /* Change text color when typing */
+    font-family: 'Playfair Display SC', serif;
+    outline: none; /* Remove default outline */
+    text-align: center;
 }
 
 .modal-content button {
     width: 50%;
     padding: 12px;
     font-size: 1rem;
-    color: white;
-    background-color: #0056b3;
+    color: #f2f1ee;
+    background-color: #f0a7a7;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -206,12 +229,30 @@ header p {
 }
 
 .modal-content button:hover {
-    background-color: #003f7f;
+    background-color: #8898c4;
 }
 
 /* "Guest ID Verified & RSVP Already message style" */
 .modal-content p {
     font-size: 1rem;
+}
+
+.modal-content h2 {
+    color: #8898c4; 
+    font-family: 'Playfair Display', serif;
+    font-weight: 300;
+}
+
+.modal-content h3 {
+    color: #8898c4; 
+    font-family: 'Playfair Display', serif;
+    font-weight: 300;
+    font-size: small;
+}
+
+.modal-content ::placeholder {
+    color: #8898c4;
+    font-family: 'Playfair Display', serif;
 }
 
 /* Navigation Bar */
@@ -269,6 +310,11 @@ nav .logo {
 /* Default: Show floral banner, hide proposal banner */
 .header-image {
     display: none; /* Hide proposal image by default */
+}
+
+/* Other page header styling - Desktop*/
+.no-image-header {
+    padding-top: 40px; /* Increase padding so text isn’t covered */
 }
 
 .desktop-banner {
@@ -372,26 +418,26 @@ nav .logo {
 
     .header-text {
         text-align: center;
-        padding-top: 80px; /* Adjust padding */
+        padding-top: 60px; /* Adjust padding */
         margin-top: 20px; /* Add margin to avoid overlap with corner photos */
     }
 
     .header-text h1 {
         font-family: 'Monsieur La Doulaise', cursive;
-        font-size: 5rem;
+        font-size: clamp(1rem, 16vw, 5rem);
         font-weight: 400;
     }
 
     .header-text h2 {
         font-family: 'Playfair Display SC', serif;
-        font-size: 1.5rem;
+        font-size: clamp(0.5rem, 4.5vw, 1.5rem);
         font-weight: 400;
         color: #8898c4;
     }
 
     .header-text p {
         font-family: 'Playfair Display SC', serif;
-        font-size: 1.25rem;
+        font-size: clamp(0.5rem, 4vw, 1.25rem);
         font-weight: 400;
         color: #8898c4;
     }
@@ -409,6 +455,42 @@ nav .logo {
     .main-section {
         margin-top: -90px; /* Move up on mobile site */
     }
+
+    /* RSVP Modal Styling */
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5); /* Background overlay */
+    }
+
+    .modal-content {
+        background-color: #f2f1ee;
+        margin: auto; /* Center modal horizontally */
+        padding: 20px;
+        border-radius: 8px;
+        width: 80%; /* Increase width on mobile site */
+        max-width: 400px; /* Set a maximum width */
+        text-align: center;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+        position: relative;
+        top: 50%; /* Position from the top */
+        transform: translateY(-50%); /* Center vertically */
+    }
+
+    /* Ensure modal appears */
+    .modal.show {
+        display: block !important;
+    }
+
+    /* Other page header styling */
+    .no-image-header {
+        padding-top: 10px; /* Increase padding so text isn’t covered */
+    }
     
 }
 
@@ -417,6 +499,7 @@ main {
     padding: 40px 20px;
     background-color: #f2f1ee;
     margin-top: 20px;
+    flex: 1; /* Allow main content to take up available space */
 }
 
 section {
@@ -434,12 +517,17 @@ footer {
     background-color: #8898c4;
     color: #000;
     text-align: center;
-    padding: 20px;
+    padding: 15px;
+    width: 100%; /* Full width */
+    margin-top: auto; /* Push footer to the bottom */
 }
 
 footer p {
     margin: 0;
     color: #f2f1ee;
+    font-family: 'Playfair Display', serif;
+    font-weight: 300;
+    font-size: clamp(0.7rem, 2vw, 1rem);
 }
 
 /* Bible Verse Styling */
@@ -461,7 +549,7 @@ footer p {
 }
 
 .main-section .verse {
-    font-size: 1.2rem;
+    font-size: clamp(0.5rem, 4.5vw, 1.2rem);
     font-family: 'Playfair Display', serif;
     margin-top: 50px;
     max-width: 600px; /* Set a maximum width */
@@ -472,7 +560,7 @@ footer p {
 }
 
 .main-section .reference {
-    font-size: 1.4rem;
+    font-size: clamp(0.5rem, 5vw, 1.3rem);
     font-family: 'Playfair Display SC', serif;
     margin-top: 20px;
     max-width: 800px; /* Set a maximum width */
@@ -544,6 +632,8 @@ footer p {
     margin: 0 auto;
     /*box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);*/
     border-radius: 10px;
+    color: #8898c4;
+    font-family: 'Playfair Display SC', serif;
 }
 
 
@@ -551,6 +641,8 @@ footer p {
     font-size: 1.2rem;
     color: #555;
     line-height: 1.6;
+    color: #8898c4;
+    font-family: 'Playfair Display', serif;
 }
 
 
@@ -563,6 +655,8 @@ footer p {
     margin: 0 auto;
     /*box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);*/
     border-radius: 10px;
+    color: #8898c4;
+    font-family: 'Playfair Display SC', serif;
 }
 
 
@@ -570,6 +664,8 @@ footer p {
     font-size: 1.2rem;
     color: #555;
     line-height: 1.6;
+    color: #8898c4;
+    font-family: 'Playfair Display', serif;
 }
 
 
@@ -582,6 +678,8 @@ footer p {
     margin: 0 auto;
     /*box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);*/
     border-radius: 10px;
+    color: #8898c4;
+    font-family: 'Playfair Display SC', serif;
 }
 
 
@@ -589,6 +687,8 @@ footer p {
     font-size: 1.2rem;
     color: #555;
     line-height: 1.6;
+    color: #8898c4;
+    font-family: 'Playfair Display', serif;
 }
 
 
@@ -601,6 +701,8 @@ footer p {
     margin: 0 auto;
     /*box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);*/
     border-radius: 10px;
+    color: #8898c4;
+    font-family: 'Playfair Display SC', serif;
 }
 
 
@@ -608,6 +710,8 @@ footer p {
     font-size: 1.2rem;
     color: #555;
     line-height: 1.6;
+    color: #8898c4;
+    font-family: 'Playfair Display', serif;
 }
 
 
@@ -620,6 +724,8 @@ footer p {
     margin: 0 auto;
     /*box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);*/
     border-radius: 10px;
+    color: #8898c4;
+    font-family: 'Playfair Display SC', serif;
 }
 
 
@@ -627,6 +733,8 @@ footer p {
     font-size: 1.2rem;
     color: #555;
     line-height: 1.6;
+    color: #8898c4;
+    font-family: 'Playfair Display', serif;
 }
 
 /*Know Before You Go Page*/
@@ -638,6 +746,8 @@ footer p {
     margin: 0 auto;
     /*box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);*/
     border-radius: 10px;
+    color: #8898c4;
+    font-family: 'Playfair Display SC', serif;
 }
 
 
@@ -645,4 +755,6 @@ footer p {
     font-size: 1.2rem;
     color: #555;
     line-height: 1.6;
+    color: #8898c4;
+    font-family: 'Playfair Display', serif;
 }
