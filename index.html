@@ -4,10 +4,10 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Darby & Cole's Wedding</title>
+
+        <link rel="stylesheet" href="styles.css?v=<?php echo $version; ?>">
+        <script src="scripts.js?v=<?php echo $version; ?>"></script>
         
-        <!-- Stylesheets -->
-        <link rel="stylesheet" href="styles.css">
-    
         <!-- Google Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Monsieur+La+Doulaise&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Playfair+Display+SC&display=swap" rel="stylesheet">
@@ -18,13 +18,13 @@
     <header>
         <div class="header-image">
             <!-- This image could be your engagement photo or another image that you want on mobile -->
-            <img src="proposal.jpg" alt="Engagement Photo" class="proposal-banner">
-            <img src="corner_flower1.png" alt="Corner Photo 1" class="corner-photo left">
-            <img src="corner_flower2.png" alt="Corner Photo 2" class="corner-photo right">
+            <img src="proposal.jpg?v=<?php echo $version; ?>" alt="Engagement Photo" class="proposal-banner">
+            <img src="corner_flower1.png?v=<?php echo $version; ?>" alt="Corner Photo 1" class="corner-photo left">
+            <img src="corner_flower2.png?v=<?php echo $version; ?>" alt="Corner Photo 2" class="corner-photo right">
         </div>
         <div class="desktop-banner">
             <!-- Floral banner-->
-            <img src="floral_banner.png" alt="Floral Decorations" class="floral-banner">
+            <img src="floral_banner.png?v=<?php echo $version; ?>" alt="Floral Decorations" class="floral-banner">
         </div>
         <div class="header-text">
             <h1>Darby<span class="ampersand"> & </span>Cole</h1>
@@ -61,7 +61,7 @@
     <!-- Main Content -->
     <main>
         <section class="main-section">
-            <img src="proposal.jpg" alt="Engagement Photo" class="engagement-photo">
+            <img src="proposal.jpg?v=<?php echo $version; ?>" alt="Engagement Photo" class="engagement-photo">
             <p class="verse">"Two are better than one, because they have a good reward for their labor. For if they fall, one will lift up his companion. But woe to him who is alone when he falls, for he has no one to help him up. Again, if two lie down together, they will keep warm; but how can one be warm alone? Though one may be overpowered by another, two can withstand him. And a threefold cord is not quickly broken."</p>
             <p class="reference">Ecclesiastes 4:9-12 (NKJV)</p>
             <button id="rsvpButton">RSVP</button>
@@ -104,7 +104,5 @@
     <footer>
         <p>&copy; 2026 Darby & Cole. All Rights Reserved. | Created with love</p>
     </footer>
-
-    <script src="scripts.js"></script>
 </body>
 </html>

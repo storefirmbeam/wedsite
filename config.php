@@ -1,6 +1,13 @@
 <?php
 session_start();
 
+// Get the latest modified timestamp of CSS and JS files
+$cssVersion = filemtime(__DIR__ . "/styles.css");
+$jsVersion = filemtime(__DIR__ . "/scripts.js");
+
+// Use the timestamp as the version number
+$version = max($cssVersion, $jsVersion);
+
 // Enable error reporting for debugging
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
