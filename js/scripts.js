@@ -93,12 +93,12 @@ document.addEventListener("DOMContentLoaded", function () {
                         location.reload();
                     } else {
                         // If not RSVP'd, show the RSVP modal
-                        document.getElementById("rsvpMessage").textContent = "Guest ID verified!";
+                        showMessage("Guest ID verified!", "success");
                         rsvpModal.classList.remove("show");
                         rsvpFormModal.classList.add("show");
                     }
                 } else {
-                    document.getElementById("rsvpMessage").textContent = "Invalid Guest ID. Please try again.";
+                    showMessage("Invalid Guest ID. Please try again.", "error");
                 }
             } catch (error) {
                 console.error("Error verifying Guest ID:", error);
@@ -187,4 +187,27 @@ document.addEventListener("DOMContentLoaded", function () {
             })
             .catch(error => console.error("Error checking session:", error));
     }
+
+    function showMessage(message, type) {
+        const rsvpMessage = document.getElementById("rsvpMessage");
+    
+        // Remove previous classes
+        rsvpMessage.classList.remove("error-message", "success-message", "shake");
+    
+        // Set new message
+        rsvpMessage.textContent = message;
+    
+        // Apply appropriate style
+        if (type === "error") {
+            rsvpMessage.classList.add("error-message", "shake");
+    
+            // Remove the shake class after the animation ends to allow re-triggering
+            setTimeout(() => {
+                rsvpMessage.classList.remove("shake");
+            }, 300);
+        } else if (type === "success") {
+            rsvpMessage.classList.add("success-message");
+        }
+    }
+    
 });
