@@ -276,7 +276,6 @@ header p {
     display: block;
     padding: 5px;
     text-align: center;
-    margin-top: 10px; /* Increase space from the top */
 }
 
 .success-message {
