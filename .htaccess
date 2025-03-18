@@ -10,3 +10,5 @@
         Header set Expires 0
     </FilesMatch>
 </IfModule>
+
+DirectoryIndex pages/index.html
