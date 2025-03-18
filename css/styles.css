@@ -324,10 +324,11 @@ nav {
 /* Default Navigation Bar */
 nav ul {
     list-style-type: none;
-    display: flex;
+    display: grid;
+    grid-template-rows: auto auto; /* Two rows */
     justify-content: center;
-    flex-wrap: wrap;
     padding: 0;
+    gap: 5px; /* Space between rows */
 }
 
 nav ul li {
@@ -337,11 +338,8 @@ nav ul li {
 }
 
 nav ul li.restricted {
-    text-align: center;
-    display: block; /* Keeps it similar to other items */
-    margin: 5px 15px;
-    padding: 10px;
-    white-space: nowrap;
+    grid-row: 2; /* Force into second row */
+    justify-self: center; /* Center tabs within the row */
 }
 
 nav ul li a {
