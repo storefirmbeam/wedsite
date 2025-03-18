@@ -147,10 +147,15 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    // Hide restricted pages and logout button
+                    // Hide the restricted row completely
+                    document.querySelector(".restricted-nav").classList.remove("show");
+
+                    // Hide all restricted tabs
                     document.querySelectorAll(".restricted").forEach(item => {
                         item.style.display = "none";
                     });
+
+                    // Hide logout button
                     document.getElementById("logout-btn").style.display = "none";
                 } else {
                     alert("Logout failed. Try again.");
@@ -159,6 +164,7 @@ document.addEventListener("DOMContentLoaded", function () {
             .catch(error => console.error("Error during logout:", error));
         });
     }
+
     // Function to update restricted page access
     function updateRestrictedAccess() {
         fetch("https://darbyandcole.site/backend/check_session.php")
@@ -170,19 +176,27 @@ document.addEventListener("DOMContentLoaded", function () {
             })
             .then(data => {
                 if (data.guestID) {
+                    // Show the restricted row
+                    document.querySelector(".restricted-nav").classList.add("show");
+
+                    // Show all restricted menu items
                     document.querySelectorAll(".restricted").forEach(item => {
-                        item.style.display = "block"; // Show restricted menu items
+                        item.style.display = "block";
                     });
-    
-                    // Show the logout button when logged in
-                    document.getElementById("logout-btn").style.display = "block"; 
+
+                    // Show the logout button
+                    document.getElementById("logout-btn").style.display = "block";
                 } else {
+                    // Hide the restricted row completely
+                    document.querySelector(".restricted-nav").classList.remove("show");
+
+                    // Hide all restricted menu items
                     document.querySelectorAll(".restricted").forEach(item => {
-                        item.style.display = "none"; // Hide restricted menu items if not verified
+                        item.style.display = "none";
                     });
-    
-                    // Hide the logout button if not logged in
-                    document.getElementById("logout-btn").style.display = "none"; 
+
+                    // Hide the logout button
+                    document.getElementById("logout-btn").style.display = "none";
                 }
             })
             .catch(error => console.error("Error checking session:", error));

@@ -318,30 +318,45 @@ nav {
     background-color: #f2f1ee;
     padding: 10px 0;
     position: relative;
-    text-align: center; /* Center content */
+    text-align: center;
 }
 
-/* Default Navigation Bar */
-nav ul {
-    list-style-type: none;
-    display: grid;
-    grid-template-rows: auto auto; /* Two rows */
-    justify-content: center;
-    padding: 0;
+/* Container to hold two nav rows */
+.nav-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     gap: 5px; /* Space between rows */
 }
 
+/* Default row styling */
+.nav-row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+/* Hide restricted row by default */
+.nav-row.restricted-nav {
+    display: none;
+}
+
+/* Show restricted row when user is verified */
+.nav-row.restricted-nav.show {
+    display: flex;
+}
+
+/* Navigation items */
 nav ul li {
-    margin: 5px 15px;
     padding: 10px;
     white-space: nowrap;
 }
 
-nav ul li.restricted {
-    grid-row: 2; /* Force into second row */
-    justify-self: center; /* Center tabs within the row */
-}
-
+/* Navigation links */
 nav ul li a {
     text-decoration: none;
     display: block;
@@ -350,12 +365,13 @@ nav ul li a {
     font-size: 1.2rem;
     font-weight: 400;
     color: #8898c4;
-    transition: color 0.3s ease, transform 0.3s ease; /* Add transition for color and transform */
+    transition: color 0.3s ease, transform 0.3s ease;
 }
 
+/* Hover effect */
 nav ul li a:hover {
-    color: #d1ab78; /* Change to your desired hover color */
-    transform: scale(1.1); /* Slightly enlarge the text on hover */
+    color: #d1ab78;
+    transform: scale(1.1);
 }
 
 /* Add logo styling */
