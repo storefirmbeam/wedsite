@@ -212,7 +212,7 @@ header p {
 .modal-content input.error {
     border-color: #8898c4; /* Change to your desired border color */
     color: #8898c4; /* Change text color when typing */
-    font-family: 'Playfair Display SC', serif; /* Ensure consistent font */
+    font-family: 'Playfair Display', serif; /* Ensure consistent font */
     outline: none; /* Remove default outline */
     text-align: center;
 }
@@ -254,6 +254,36 @@ header p {
 .modal-content ::placeholder {
     color: #8898c4;
     font-family: 'Playfair Display', serif;
+}
+
+#rsvpFormModal .modal-content h2 {
+    padding-bottom: 20px; /* Add padding below the h2 element */
+}
+
+/* Form Styling */
+.form-label {
+    font-family: 'Playfair Display', serif;
+    color: #8898c4;
+    font-size: 1.2em;
+    margin-bottom: 0.5em;
+    display: block;
+}
+
+.form-select, .form-input, .form-textarea {
+    font-family: 'Playfair Display', serif;
+    color: #8898c4;
+    font-size: 1em;
+    padding: 0.5em;
+    margin-bottom: 1em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.form-select:focus, .form-input:focus, .form-textarea:focus {
+    border-color: #8898c4;
+    outline: none;
 }
 
 /* Error Message */

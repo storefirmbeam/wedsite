@@ -70,7 +70,7 @@
         </section>
     </main>
 
-    <!-- RSVP Modal (Guest ID Input) -->
+    <!-- Verify Guest Modal (Guest ID Input) -->
     <div id="rsvpModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
@@ -90,15 +90,15 @@
             <span class="close">&times;</span>
             <h2>RSVP Confirmation</h2>
             <form id="rsvpForm">
-                <label for="attending">Will you attend?</label>
-                <select id="attending" name="attending" required>
+                <label for="attending" class="form-label">Will you attend?</label>
+                <select id="attending" name="attending" class="form-select" required>
                     <option value="1">Yes, I'm attending</option>
                     <option value="0">No, I can't make it</option>
                 </select>
-                <label for="guest_count">Number of Guests:</label>
-                <input type="number" id="guest_count" name="guest_count" min="1" required>
-                <label for="message">Leave a message:</label>
-                <textarea id="message" name="message" placeholder="Optional"></textarea>
+                <label for="guest_count" class="form-label">Number of Guests:</label>
+                <input type="number" id="guest_count" name="guest_count" class="form-input" min="1" required>
+                <label for="message" class="form-label">Leave a message:</label>
+                <textarea id="message" name="message" class="form-textarea" placeholder="Optional"></textarea>
                 <button type="submit">Submit RSVP</button>
             </form>
             <p id="confirmationMessage"></p>
