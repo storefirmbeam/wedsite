@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             try {
-                let response = await fetch("https://darbyandcole.site/verify_guest.php", {
+                let response = await fetch("https://darbyandcole.site/backend/verify_guest.php", {
                     method: "POST",
                     headers: { "Content-Type": "application/x-www-form-urlencoded" },
                     body: `guest_id=${encodeURIComponent(guestID)}`
@@ -115,7 +115,7 @@ document.addEventListener("DOMContentLoaded", function () {
             let formData = new FormData(this);
 
             try {
-                let response = await fetch("https://darbyandcole.site/rsvp.php", {
+                let response = await fetch("https://darbyandcole.site/backend/rsvp.php", {
                     method: "POST",
                     body: formData
                 });
@@ -140,7 +140,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const logout = document.getElementById("logout-btn");
     if (logout) {
         logout.addEventListener("click", function () {
-            fetch("https://darbyandcole.site/logout.php", {
+            fetch("https://darbyandcole.site/backend/logout.php", {
                 method: "POST",
                 credentials: "include"
             })
@@ -161,7 +161,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     // Function to update restricted page access
     function updateRestrictedAccess() {
-        fetch("https://darbyandcole.site/check_session.php")
+        fetch("https://darbyandcole.site/backend/check_session.php")
             .then(response => {
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);

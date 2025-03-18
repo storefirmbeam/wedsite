@@ -2,8 +2,8 @@
 session_start();
 
 // Get the latest modified timestamp of CSS and JS files
-$cssVersion = filemtime(__DIR__ . "/styles.css");
-$jsVersion = filemtime(__DIR__ . "/scripts.js");
+$cssVersion = filemtime(__DIR__ . "/css/styles.css");
+$jsVersion = filemtime(__DIR__ . "/js/scripts.js");
 
 // Use the timestamp as the version number
 $version = max($cssVersion, $jsVersion);
