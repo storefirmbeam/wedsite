@@ -208,10 +208,11 @@ header p {
     text-align: center;
 }
 
-.modal-content input:focus {
+.modal-content input:focus, 
+.modal-content input.error {
     border-color: #8898c4; /* Change to your desired border color */
     color: #8898c4; /* Change text color when typing */
-    font-family: 'Playfair Display SC', serif;
+    font-family: 'Playfair Display SC', serif; /* Ensure consistent font */
     outline: none; /* Remove default outline */
     text-align: center;
 }
@@ -226,6 +227,7 @@ header p {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    margin-top: 20px; /* Increase space from the top */
 }
 
 .modal-content button:hover {
@@ -274,6 +276,7 @@ header p {
     display: block;
     padding: 5px;
     text-align: center;
+    margin-top: 10px; /* Increase space from the top */
 }
 
 .success-message {
