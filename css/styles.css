@@ -256,10 +256,6 @@ header p {
     font-family: 'Playfair Display', serif;
 }
 
-#rsvpFormModal .modal-content h2 {
-    padding-bottom: 20px; /* Add padding below the h2 element */
-}
-
 /* Form Styling */
 .form-label {
     font-family: 'Playfair Display', serif;
@@ -267,6 +263,7 @@ header p {
     font-size: 1.2em;
     margin-bottom: 0.5em;
     display: block;
+    padding-top: 15px;
 }
 
 .form-select, .form-input, .form-textarea {
