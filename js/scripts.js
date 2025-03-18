@@ -23,11 +23,17 @@ document.addEventListener("DOMContentLoaded", function () {
     updateCountdown();
 
     // Mobile Menu Toggle
-    // Check if the menu toggle button exists before adding an event listener
-    const menuToggle = document.querySelector(".menu-toggle");
-    if (menuToggle) {
-        menuToggle.addEventListener("click", function () {
-            document.getElementById("nav-menu").classList.toggle("show");
+    // ✅ FIXED Mobile Menu Toggle (Checkbox Method)
+    const checkbox = document.getElementById("checkbox");
+    const navContainer = document.querySelector(".nav-container");
+
+    if (checkbox) {
+        checkbox.addEventListener("change", function () {
+            if (this.checked) {
+                navContainer.style.display = "flex";
+            } else {
+                navContainer.style.display = "none";
+            }
         });
     }
 

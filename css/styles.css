@@ -419,43 +419,59 @@ nav .logo {
 
     .toggle {
         display: flex; /* Show on small screens */
+        cursor: pointer;
     }
 
     nav {
-        position: fixed; /* Make the navigation bar fixed */
-        top: 0; /* Position it at the top */
-        width: 100%; /* Full width */
-        z-index: 1000; /* Ensure it is above other content */
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
     }
 
     nav .logo {
-        display: block; /* Show logo on small screens */
+        display: block;
     }
 
-    nav ul {
-        display: none;
+    .nav-container {
+        display: none; /* Hide menu by default */
         flex-direction: column;
+        align-items: center;
         background: #f2f1ee;
         position: absolute;
         top: 60px;
-        left: 50%; /* Center horizontally */
-        transform: translateX(-50%); /* Center horizontally */
-        width: 80%; /* Smaller width */
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80%;
         text-align: center;
-        max-height: 80vh; /* Prevent overflow */
-        overflow-y: auto; /* Enable scrolling */
-        border: 1px solid #ccc; /* Outline */
-        border-radius: 10px; /* Rounded edges */
-        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        max-height: 80vh;
+        overflow-y: auto;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     }
 
     /* Show menu when checkbox is checked */
-    #checkbox:checked ~ #nav-menu {
+    #checkbox:checked ~ .nav-container {
         display: flex;
     }
 
-    #checkbox:checked ~ #nav-menu ul {
+    /* Stack items vertically */
+    .nav-row {
         display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+    /* Make restricted items visible when verified */
+    .restricted {
+        display: none; /* Initially hidden */
+    }
+
+    .restricted-nav.show .restricted {
+        display: block;
     }
 
     /* Hide floral banner */
