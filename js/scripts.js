@@ -131,7 +131,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             } catch (error) {
                 console.error("Error submitting RSVP:", error);
-                document.getElementById("confirmationMessage").textContent = "Error submitting RSVP. Contact administration.";
+                showMessage("Error submitting RSVP. Contact administration.", "error");
             }
         });
     }
