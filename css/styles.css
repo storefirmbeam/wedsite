@@ -454,6 +454,10 @@ nav .logo {
         display: flex;
     }
 
+    #checkbox:checked ~ #nav-menu ul {
+        display: flex;
+    }
+
     /* Hide floral banner */
     .desktop-banner {
         display: none;
