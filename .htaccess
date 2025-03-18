@@ -1,3 +1,13 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^([a-zA-Z0-9_-]+)\.html$ /pages/$1.html [L]
+</IfModule>
+
+# Set the default index file to be pages/index.html
+DirectoryIndex pages/index.html
+
 <IfModule mod_expires.c>
     ExpiresActive On
     ExpiresDefault "access plus 1 seconds"
@@ -10,5 +20,3 @@
         Header set Expires 0
     </FilesMatch>
 </IfModule>
-
-DirectoryIndex pages/index.html
