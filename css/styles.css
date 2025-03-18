@@ -339,6 +339,10 @@ nav ul li {
 nav ul li.restricted {
     flex-basis: 100%; /* Make restricted tabs start on a new row */
     text-align: center; /* Center the restricted tabs */
+    display: inline-block;
+    margin: 5px 15px;
+    padding: 10px;
+    white-space: nowrap;
 }
 
 nav ul li a {
