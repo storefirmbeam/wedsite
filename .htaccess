@@ -1,7 +1,7 @@
 <IfModule mod_rewrite.c>
-    RewriteEngine On
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !^/pages/restricted_pages/(.*)$
     RewriteRule ^([a-zA-Z0-9_-]+)\.html$ /pages/$1.html [L]
 </IfModule>
 
