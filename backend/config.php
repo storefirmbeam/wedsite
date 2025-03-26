@@ -1,18 +1,6 @@
 <?php
 session_start();
 
-// Access control: Check if the user is authenticated
-function checkAccess() {
-    // Assuming you have an `authenticated` session variable set upon login
-    if (!isset($_SESSION['authenticated']) || $_SESSION['authenticated'] !== true) {
-        // Redirect to a login page or access denied page
-        header('Location: /pages/access_denied.html');
-        exit();
-    }
-}
-
-// Call the function to enforce access control
-checkAccess();
 // Get the latest modified timestamp of CSS and JS files
 $cssVersion = filemtime(__DIR__ . "/css/styles.css");
 $jsVersion = filemtime(__DIR__ . "/js/scripts.js");
