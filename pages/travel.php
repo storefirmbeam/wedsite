@@ -56,9 +56,9 @@ if (!isset($_SESSION['guestID'])) {
     
             <!-- Second Row (Restricted Pages & Logout) -->
             <ul class="nav-row restricted-nav">
-                <li class="restricted" style="display: none;"><a href="travel.html">Travel</a></li>
-                <li class="restricted" style="display: none;"><a href="qa.html">Q & A</a></li>
-                <li class="restricted" style="display: none;"><a href="kbyg.html">Know Before You Go</a></li>
+                <li class="restricted" style="display: none;"><a href="/pages/travel.php">Travel</a></li>
+                <li class="restricted" style="display: none;"><a href="/php/qa.php">Q & A</a></li>
+                <li class="restricted" style="display: none;"><a href="/pages/kbyg.php">Know Before You Go</a></li>
                 <li id="logout-btn" style="display: none;"><a href="#">Logout</a></li>
             </ul>
         </div>
