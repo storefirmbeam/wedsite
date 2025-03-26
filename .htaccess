@@ -1,8 +1,8 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
-    RewriteCond %{REQUEST_URI} ^/pages/restricted_pages/
-    RewriteCond %{HTTP_COOKIE} !authenticated_user=true
-    RewriteRule ^.*$ /pages/access_denied.html [L]
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^([a-zA-Z0-9_-]+)\.html$ /pages/$1.html [L]
 </IfModule>
 
 # Set the default index file to be pages/index.html
