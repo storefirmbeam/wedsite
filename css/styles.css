@@ -422,6 +422,11 @@ nav .logo {
 }
 
 #guestCheckboxes label {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* 💡 Center checkbox + text inside pill */
+    gap: 0.5rem;
+
     background-color: #f2f1ee;
     padding: 0.5rem 1rem;
     border-radius: 20px;
