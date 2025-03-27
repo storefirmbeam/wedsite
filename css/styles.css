@@ -620,6 +620,39 @@ nav .logo {
         padding-top: 10px; /* Increase padding so text isn’t covered */
     }
     
+    #guestCheckboxes {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center; /* ⬅️ Horizontally center */
+        align-items: center;     /* ⬅️ Vertically center */
+        gap: 1rem;
+        margin-top: 10px;
+        text-align: center;
+    }
+    
+    #guestCheckboxes label {
+        display: flex;
+        align-items: center;
+        justify-content: center; /* 💡 Center checkbox + text inside pill */
+        gap: 0.5rem;
+    
+        background-color: #f2f1ee;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        border: 1px solid #ccc;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+        font-family: 'Playfair Display', serif;
+        font-size: 1rem;
+        font-weight: 500;
+        color: #8898c4; /* Dark gray - you can change this to #000, #555, etc. */
+    
+    }
+    
+    #guestCheckboxes label:hover {
+        background-color: #e0e0e0;
+    }
+    
 }
 
 /* Main Content */
