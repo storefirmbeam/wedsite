@@ -100,13 +100,16 @@ document.addEventListener("DOMContentLoaded", function () {
                         showMessage("Guest ID verified!", "success");
     
                         // ✅ Render checkboxes for family members
+                        const container = document.getElementById("guestCheckboxes");
+                        container.innerHTML = "";
+
                         result.family.forEach(guest => {
                             const isCurrentGuest = guest.id === result.guestID;
                             const checkboxContainer = document.createElement("div");
                             checkboxContainer.classList.add("container");
-                        
+
                             const uniqueId = `cbx-${guest.id}`;
-                        
+
                             checkboxContainer.innerHTML = `
                                 <input type="checkbox" id="${uniqueId}" name="attending_guests[]" value="${guest.id}" ${isCurrentGuest ? "checked" : ""}>
                                 <label for="${uniqueId}" class="check">
@@ -117,7 +120,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                     <span>${guest.name}</span>
                                 </label>
                             `;
-                        
+
                             container.appendChild(checkboxContainer);
                         });
     
