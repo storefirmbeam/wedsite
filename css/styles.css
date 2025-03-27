@@ -227,6 +227,7 @@ header p {
     width: 50%;
     padding: 12px;
     font-size: 1rem;
+    font-family: 'Playfair Display', serif;
     color: #f2f1ee;
     background-color: #f0a7a7;
     border: none;
@@ -303,8 +304,9 @@ header p {
 }
 
 .error-message {
-    color: red;
+    color: #f0a7a7;
     font-weight: bold;
+    font-family: 'Playfair Display', serif;
     display: block;
     padding: 5px;
     text-align: center;
@@ -312,8 +314,9 @@ header p {
 }
 
 .success-message {
-    color: #00ff2f;
+    color: #8898c4;
     font-weight: bold;
+    font-family: 'Playfair Display', serif;
     display: block;
     padding: 5px;
     text-align: center;
@@ -432,7 +435,7 @@ nav .logo {
     padding: 1rem;
     border-radius: 20px;
     background-color: #f2f1ee;
-    border: 1px solid #ccc;
+    border: 1px solid #8898c4;
     min-width: 120px;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
     cursor: pointer;
@@ -482,7 +485,7 @@ nav .logo {
     fill: none;
     stroke-linecap: round;
     stroke-linejoin: round;
-    stroke: #8898c4;
+    stroke: #f0a7a7;
     stroke-width: 1.5;
     transition: all 0.2s ease;
   }
@@ -498,7 +501,7 @@ nav .logo {
   }
   
   input[type="checkbox"]:checked + .checkbox-pill .check svg {
-    stroke: #f0a7a7;
+    stroke: #8898c4;
   }
   
   input[type="checkbox"]:checked + .checkbox-pill .check svg path {
