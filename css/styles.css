@@ -175,6 +175,12 @@ header p {
     transform: translateY(-50%); /* Center vertically */
 }
 
+.modal-content input {
+    color: #8898c4;
+    font-family: 'Playfair Display', serif;
+    text-align: center;
+}
+
 /* Ensure modal appears */
 .modal.show {
     display: block !important;
@@ -251,10 +257,10 @@ header p {
     font-size: small;
 }
 
-/* .modal-content ::placeholder {
+.modal-content ::placeholder {
     color: #8898c4;
     font-family: 'Playfair Display', serif;
-} */
+}
 
 /* Form Styling */
 .form-label {
