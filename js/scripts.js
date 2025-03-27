@@ -73,33 +73,46 @@ document.addEventListener("DOMContentLoaded", function () {
         verifyGuestBtn.addEventListener("click", async function (event) {
             event.preventDefault();
             const guestID = document.getElementById("guestID").value;
-
+    
             if (!guestID) {
                 document.getElementById("rsvpMessage").textContent = "Please enter a Guest ID.";
                 return;
             }
-
+    
             try {
                 let response = await fetch("https://darbyandcole.site/backend/verify_guest.php", {
                     method: "POST",
                     headers: { "Content-Type": "application/x-www-form-urlencoded" },
                     body: `guest_id=${encodeURIComponent(guestID)}`
                 });
-
+    
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
-
+    
                 let result = await response.json();
-                
+    
                 // If valid guest ID, show RSVP form unless user already submitted rsvp
                 if (result.valid) {
                     if (result.rsvped) {
-                        // If the guest has already RSVP'd, refresh the page to load restricted content
                         location.reload();
                     } else {
-                        // If not RSVP'd, show the RSVP modal
                         showMessage("Guest ID verified!", "success");
+    
+                        // ✅ Render checkboxes for family members
+                        const container = document.getElementById("guestCheckboxes");
+                        container.innerHTML = "";
+    
+                        result.family.forEach(guest => {
+                            const label = document.createElement("label");
+                            label.style.display = "block"; // Makes each checkbox go on a new line
+                            label.innerHTML = `
+                                <input type="checkbox" name="attending_guests[]" value="${guest.id}" ${guest.id === result.guestID ? "checked disabled" : ""}>
+                                ${guest.name}
+                            `;
+                            container.appendChild(label);
+                        });
+    
                         rsvpModal.classList.remove("show");
                         rsvpFormModal.classList.add("show");
                     }
@@ -112,24 +125,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     }
-
-    if (result.valid) {
-        // Show form and populate guest checkboxes
-        const container = document.getElementById("guestCheckboxes");
-        container.innerHTML = "";
-        result.family.forEach(guest => {
-            const label = document.createElement("label");
-            label.innerHTML = `
-                <input type="checkbox" name="attending_guests[]" value="${guest.id}" ${guest.id === result.guestID ? "checked disabled" : ""}>
-                ${guest.name}
-            `;
-            container.appendChild(label);
-        });
     
-        // Show the modal
-        rsvpModal.classList.remove("show");
-        rsvpFormModal.classList.add("show");
-    }
 
     // RSVP Form Submission
     const rsvpForm = document.getElementById("rsvpForm");
