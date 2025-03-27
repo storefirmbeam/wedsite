@@ -102,8 +102,10 @@
                     <option value="1">Yes, I'm attending</option>
                     <option value="0">No, I can't make it</option>
                 </select>
-                <label for="guest_count" class="form-label">Number of Guests:</label>
-                <input type="number" id="guest_count" name="guest_count" class="form-input" min="1" required>
+                <div id="guestCheckboxes" class="form-group">
+                    <label class="form-label">Who's attending?</label>
+                    <!-- Checkboxes will be added here dynamically -->
+                  </div>
                 <label for="message" class="form-label">Leave a message:</label>
                 <textarea id="message" name="message" class="form-textarea" placeholder="Optional"></textarea>
                 <button type="submit">Submit RSVP</button>

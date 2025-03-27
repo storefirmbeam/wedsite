@@ -1,9 +1,9 @@
 <?php
-require_once 'config.php'; // Database connection & CORS headers applied
-
-$conn = getDatabaseConnection(); // Use centralized function
+require_once 'config.php'; // Database connection & session
 
 header('Content-Type: application/json');
+
+$conn = getDatabaseConnection(); // This returns a mysqli connection
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $guest_id = $_POST['guest_id'] ?? '';
@@ -13,51 +13,72 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
-    // Validate guest_id (allow alphanumeric and special characters)
+    // Validate guest_id (alphanumeric and special characters)
     if (!preg_match('/^[a-zA-Z0-9!@#$%^&*()_+\-=\[\]{};\'\\:"|,.<>\/?]+$/', $guest_id)) {
         echo json_encode(["valid" => false, "message" => "Invalid Guest ID format."]);
         exit;
     }
 
-    $stmt = $conn->prepare("SELECT first_name, last_name FROM guests WHERE guest_id = ?");
-    if ($stmt === false) {
+    // Look up the guest by ID
+    $stmt = $conn->prepare("SELECT first_name, last_name, famID FROM guests WHERE guest_id = ?");
+    if (!$stmt) {
         echo json_encode(["valid" => false, "message" => "Database error: " . $conn->error]);
         exit;
     }
+
     $stmt->bind_param("s", $guest_id);
     $stmt->execute();
     $result = $stmt->get_result();
 
-    if ($result->num_rows > 0) {
-        $guest = $result->fetch_assoc();
-
-        // Check if Guest ID exists in the rsvp table
-        $rsvp_stmt = $conn->prepare("SELECT COUNT(*) as rsvp_count FROM rsvps WHERE guest_id = ?");
-        $rsvp_stmt->bind_param("s", $guest_id);
-        $rsvp_stmt->execute();
-        $rsvp_result = $rsvp_stmt->get_result();
-        $rsvp_data = $rsvp_result->fetch_assoc();
-        $already_rsvped = $rsvp_data['rsvp_count'] > 0;
-
-        // Store guest session data
-        $_SESSION['guestID'] = $guest_id;
-        $_SESSION['guestName'] = $guest['first_name'] . ' ' . $guest['last_name'];
-
-        echo json_encode([
-            "valid" => true,
-            "message" => "Guest ID verified.",
-            "first_name" => $guest['first_name'],
-            "last_name" => $guest['last_name'],
-            "unlock_restricted" => true,
-            "rsvped" => $already_rsvped // This tells the front-end if they have RSVP'd already
-        ]);
-
-        $rsvp_stmt->close();
-    } else {
+    if ($result->num_rows === 0) {
         echo json_encode(["valid" => false, "message" => "Invalid Guest ID."]);
+        exit;
     }
 
+    $guest = $result->fetch_assoc();
+    $famID = $guest['famID'];
+
+    // Check RSVP status
+    $rsvp_stmt = $conn->prepare("SELECT COUNT(*) as rsvp_count FROM rsvps WHERE guest_id = ?");
+    $rsvp_stmt->bind_param("s", $guest_id);
+    $rsvp_stmt->execute();
+    $rsvp_result = $rsvp_stmt->get_result();
+    $rsvp_data = $rsvp_result->fetch_assoc();
+    $already_rsvped = $rsvp_data['rsvp_count'] > 0;
+
+    // Get all family members by famID
+    $family_stmt = $conn->prepare("SELECT guest_id, CONCAT(first_name, ' ', last_name) AS name FROM guests WHERE famID = ?");
+    $family_stmt->bind_param("s", $famID);
+    $family_stmt->execute();
+    $family_result = $family_stmt->get_result();
+
+    $family = [];
+    while ($row = $family_result->fetch_assoc()) {
+        $family[] = [
+            'id' => $row['guest_id'],
+            'name' => $row['name']
+        ];
+    }
+
+    // Store session info
+    $_SESSION['guestID'] = $guest_id;
+    $_SESSION['guestName'] = $guest['first_name'] . ' ' . $guest['last_name'];
+
+    echo json_encode([
+        "valid" => true,
+        "message" => "Guest ID verified.",
+        "first_name" => $guest['first_name'],
+        "last_name" => $guest['last_name'],
+        "guestID" => $guest_id,
+        "unlock_restricted" => true,
+        "rsvped" => $already_rsvped,
+        "family" => $family
+    ]);
+
+    // Close everything
     $stmt->close();
+    $rsvp_stmt->close();
+    $family_stmt->close();
     $conn->close();
 } else {
     echo json_encode(["valid" => false, "message" => "Invalid request method."]);
