@@ -251,10 +251,10 @@ header p {
     font-size: small;
 }
 
-.modal-content ::placeholder {
+/* .modal-content ::placeholder {
     color: #8898c4;
     font-family: 'Playfair Display', serif;
-}
+} */
 
 /* Form Styling */
 .form-label {
@@ -306,7 +306,7 @@ header p {
 }
 
 .success-message {
-    color: green;
+    color: #00ff2f;
     font-weight: bold;
     display: block;
     padding: 5px;
@@ -433,9 +433,9 @@ nav .logo {
     transition: background-color 0.2s ease;
   }
   
-  .checkbox-pill:hover {
+  /* .checkbox-pill:hover {
     background-color: #e0e0e0;
-  }
+  } */
   
   .guest-name {
     margin-top: 0.6rem;
@@ -476,7 +476,7 @@ nav .logo {
     fill: none;
     stroke-linecap: round;
     stroke-linejoin: round;
-    stroke: #c8ccd4;
+    stroke: #8898c4;
     stroke-width: 1.5;
     transition: all 0.2s ease;
   }
@@ -492,7 +492,7 @@ nav .logo {
   }
   
   input[type="checkbox"]:checked + .checkbox-pill .check svg {
-    stroke: #4285f4;
+    stroke: #f0a7a7;
   }
   
   input[type="checkbox"]:checked + .checkbox-pill .check svg path {
