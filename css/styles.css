@@ -411,140 +411,100 @@ nav .logo {
     height: auto;
 }
 
-/* Container for each guest pill */
-.checkbox-pill {
+#guestCheckboxes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 10px;
+  }
+  
+  .checkbox-pill {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    background-color: #f2f1ee;
     padding: 1rem;
     border-radius: 20px;
+    background-color: #f2f1ee;
     border: 1px solid #ccc;
-    min-width: 100px;
-    max-width: 140px;
+    min-width: 120px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
     cursor: pointer;
     transition: background-color 0.2s ease;
-    font-family: 'Playfair Display', serif;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
   }
   
   .checkbox-pill:hover {
     background-color: #e0e0e0;
   }
   
-  /* Guest name styling */
   .guest-name {
-    margin-top: 0.4rem;
-    font-size: 1rem;
-    font-weight: 500;
-    color: #8898c4;
-    text-align: center;
-  }  
-  
-  #guestCheckboxes {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 1rem;
-    margin-top: 10px;
-  }
-
-.check {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.3rem;
-
-    background-color: #f2f1ee;
-    padding: 1rem;
-    border-radius: 20px;
-    border: 1px solid #ccc;
-    min-width: 100px;
-    max-width: 140px;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
+    margin-top: 0.6rem;
     font-family: 'Playfair Display', serif;
     font-size: 1rem;
     font-weight: 500;
     color: #8898c4;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-}
-
-.check:hover {
-    background-color: #e0e0e0;
-}
-
-.check {
-  cursor: pointer;
-  position: relative;
-  margin: auto;
-  width: 18px;
-  height: 18px;
-  -webkit-tap-highlight-color: transparent;
-  transform: translate3d(0, 0, 0);
-}
-
-.check:before {
-  content: "";
-  position: absolute;
-  top: -15px;
-  left: -15px;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: rgba(34, 50, 84, 0.03);
-  opacity: 0;
-  transition: opacity 0.2s ease;
-}
-
-.check svg {
-  position: relative;
-  z-index: 1;
-  fill: none;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke: #c8ccd4;
-  stroke-width: 1.5;
-  transform: translate3d(0, 0, 0);
-  transition: all 0.2s ease;
-}
-
-.check svg path {
-  stroke-dasharray: 60;
-  stroke-dashoffset: 0;
-}
-
-.check svg polyline {
-  stroke-dasharray: 22;
-  stroke-dashoffset: 66;
-}
-
-.check:hover:before {
-  opacity: 1;
-}
-
-.check:hover svg {
-  stroke: #4285f4;
-}
-
-input[type="checkbox"]:checked + .checkbox-pill .check svg {
+  }
+  
+  .check {
+    position: relative;
+    width: 24px;
+    height: 24px;
+    margin: auto;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  .check:before {
+    content: "";
+    position: absolute;
+    top: -12px;
+    left: -12px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(34, 50, 84, 0.03);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+  
+  .check:hover:before {
+    opacity: 1;
+  }
+  
+  .check svg {
+    position: relative;
+    z-index: 1;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke: #c8ccd4;
+    stroke-width: 1.5;
+    transition: all 0.2s ease;
+  }
+  
+  .check svg path {
+    stroke-dasharray: 60;
+    stroke-dashoffset: 0;
+  }
+  
+  .check svg polyline {
+    stroke-dasharray: 22;
+    stroke-dashoffset: 66;
+  }
+  
+  input[type="checkbox"]:checked + .checkbox-pill .check svg {
     stroke: #4285f4;
-}
-
-input[type="checkbox"]:checked + .checkbox-pill .check svg path {
+  }
+  
+  input[type="checkbox"]:checked + .checkbox-pill .check svg path {
     stroke-dashoffset: 60;
     transition: all 0.3s linear;
-}
-
-input[type="checkbox"]:checked + .checkbox-pill .check svg polyline {
+  }
+  
+  input[type="checkbox"]:checked + .checkbox-pill .check svg polyline {
     stroke-dashoffset: 42;
     transition: all 0.2s linear;
     transition-delay: 0.15s;
-}
-
+  }
 
 /* Small Screens (Switch to hamburger menu) */
 @media (max-width: 800px) {
