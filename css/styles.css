@@ -444,6 +444,11 @@ nav .logo {
     background-color: #e0e0e0;
 }
 
+#guestCheckboxes input[type="checkbox"] {
+    transform: scale(1.1);
+    margin: 0;
+}
+
 /* Small Screens (Switch to hamburger menu) */
 @media (max-width: 800px) {
     .menu-toggle {
