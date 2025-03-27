@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const guestID = document.getElementById("guestID").value;
     
             if (!guestID) {
-                document.getElementById("rsvpMessage").textContent = "Please enter a Guest ID.";
+                showMessage("Please enter a Guest ID.");
                 return;
             }
     
@@ -102,6 +102,11 @@ document.addEventListener("DOMContentLoaded", function () {
                         // ✅ Render checkboxes for family members
                         const container = document.getElementById("guestCheckboxes");
                         container.innerHTML = "";
+
+                        // Move the current RSVPing guest to the front
+                        result.family.sort((a, b) => {
+                            return a.id === result.guestID ? -1 : b.id === result.guestID ? 1 : 0;
+                        });
 
                         result.family.forEach(guest => {
                             const isCurrentGuest = guest.id === result.guestID;
