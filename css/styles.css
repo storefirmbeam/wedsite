@@ -411,6 +411,37 @@ nav .logo {
     height: auto;
 }
 
+/* Container for each guest pill */
+.checkbox-pill {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #f2f1ee;
+    padding: 1rem;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    min-width: 100px;
+    max-width: 140px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    font-family: 'Playfair Display', serif;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  }
+  
+  .checkbox-pill:hover {
+    background-color: #e0e0e0;
+  }
+  
+  /* Guest name styling */
+  .guest-name {
+    margin-top: 0.4rem;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #8898c4;
+    text-align: center;
+  }  
+
 .check {
     display: flex;
     flex-direction: column;
