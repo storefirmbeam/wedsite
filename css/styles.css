@@ -266,7 +266,7 @@ header p {
     padding-top: 15px;
 }
 
-.form-select, .form-input, .form-textarea {
+.form-input, .form-textarea {
     font-family: 'Playfair Display', serif;
     color: #8898c4;
     font-size: 1em;
@@ -278,7 +278,7 @@ header p {
     box-sizing: border-box;
 }
 
-.form-select:focus, .form-input:focus, .form-textarea:focus {
+.form-input:focus, .form-textarea:focus {
     border-color: #8898c4;
     outline: none;
 }
