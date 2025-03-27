@@ -1,21 +1,13 @@
 <?php
-require_once 'config.php'; // Ensure DB connection and config
+require_once 'config.php'; // Ensure DB connection and session
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-// ✅ Start the session safely
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
+$conn = getDatabaseConnection(); // This returns a mysqli connection
 
-$pdo = getDatabaseConnection(); // Must return PDO
-if (!($pdo instanceof PDO)) {
-    throw new Exception("Database connection must be a PDO instance.");
-}
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $attending = $_POST['attending'];
     $message = $_POST['message'] ?? '';
     $attendingGuests = $_POST['attending_guests'] ?? [];
@@ -25,33 +17,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
 
+    // Sanitize message (once, for simplicity)
+    $safeMessage = htmlspecialchars($message, ENT_QUOTES, 'UTF-8');
+
+    // Begin transaction
+    $conn->begin_transaction();
+
     try {
-        if (!$pdo->beginTransaction()) {
-            throw new Exception("Failed to start transaction.");
-        }
+        $stmt = $conn->prepare("
+            REPLACE INTO rsvps (guest_id, attending, message)
+            VALUES (?, ?, ?)
+        ");
 
         foreach ($attendingGuests as $guestID) {
-            $safeMessage = htmlspecialchars($message, ENT_QUOTES, 'UTF-8');
-
-            $stmt = $pdo->prepare("
-                REPLACE INTO rsvps (guest_id, attending, message)
-                VALUES (:guest_id, :attending, :message)
-            ");
-            $stmt->execute([
-                'guest_id' => $guestID,
-                'attending' => $attending,
-                'message' => $safeMessage
-            ]);
+            $stmt->bind_param("sis", $guestID, $attending, $safeMessage);
+            $stmt->execute();
         }
 
-        $pdo->commit();
+        $stmt->close();
+        $conn->commit();
+
         $_SESSION['rsvpStatus'] = "confirmed";
         echo json_encode(['success' => true, 'message' => 'RSVP submitted successfully!']);
-    } catch (PDOException $e) {
-        $pdo->rollBack();
-        echo json_encode(['success' => false, 'message' => 'Database error: ' . $e->getMessage()]);
     } catch (Exception $e) {
-        echo json_encode(['success' => false, 'message' => 'Error: ' . $e->getMessage()]);
+        $conn->rollback();
+        echo json_encode(['success' => false, 'message' => 'Error submitting RSVP.']);
     }
+
+    $conn->close();
 }
 ?>
