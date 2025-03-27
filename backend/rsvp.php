@@ -8,7 +8,7 @@ error_reporting(E_ALL);
 $conn = getDatabaseConnection(); // This returns a mysqli connection
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $attending = $_POST['attending'];
+    $attending = 1; // Everyone checked is attending
     $message = $_POST['message'] ?? '';
     $attendingGuests = $_POST['attending_guests'] ?? [];
 
