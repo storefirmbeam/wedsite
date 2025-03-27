@@ -441,6 +441,15 @@ nav .logo {
     color: #8898c4;
     text-align: center;
   }  
+  
+  #guestCheckboxes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-top: 10px;
+  }
 
 .check {
     display: flex;
@@ -521,21 +530,21 @@ nav .logo {
   stroke: #4285f4;
 }
 
-/* ✅ Updated to use input[type=checkbox]:checked + .check */
-input[type="checkbox"]:checked + .check svg {
-  stroke: #4285f4;
+input[type="checkbox"]:checked + .checkbox-pill .check svg {
+    stroke: #4285f4;
 }
 
-input[type="checkbox"]:checked + .check svg path {
-  stroke-dashoffset: 60;
-  transition: all 0.3s linear;
+input[type="checkbox"]:checked + .checkbox-pill .check svg path {
+    stroke-dashoffset: 60;
+    transition: all 0.3s linear;
 }
 
-input[type="checkbox"]:checked + .check svg polyline {
-  stroke-dashoffset: 42;
-  transition: all 0.2s linear;
-  transition-delay: 0.15s;
+input[type="checkbox"]:checked + .checkbox-pill .check svg polyline {
+    stroke-dashoffset: 42;
+    transition: all 0.2s linear;
+    transition-delay: 0.15s;
 }
+
 
 /* Small Screens (Switch to hamburger menu) */
 @media (max-width: 800px) {
