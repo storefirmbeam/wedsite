@@ -5,6 +5,11 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+// ✅ Start the session safely
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 $pdo = getDatabaseConnection(); // Must return PDO
 if (!($pdo instanceof PDO)) {
     throw new Exception("Database connection must be a PDO instance.");
