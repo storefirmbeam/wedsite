@@ -411,6 +411,19 @@ nav .logo {
     height: auto;
 }
 
+#guestCheckboxes {
+    display: flex;
+    flex-wrap: wrap; /* Allows wrapping to next line if too wide */
+    gap: 1rem; /* Spacing between checkboxes */
+    margin-top: 10px;
+}
+
+#guestCheckboxes label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
 /* Small Screens (Switch to hamburger menu) */
 @media (max-width: 800px) {
     .menu-toggle {

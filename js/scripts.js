@@ -106,8 +106,9 @@ document.addEventListener("DOMContentLoaded", function () {
                         result.family.forEach(guest => {
                             const label = document.createElement("label");
                             label.style.display = "block"; // Makes each checkbox go on a new line
+                            const isCurrentGuest = guest.id === result.guestID;
                             label.innerHTML = `
-                                <input type="checkbox" name="attending_guests[]" value="${guest.id}" ${guest.id === result.guestID ? "checked disabled" : ""}>
+                                <input type="checkbox" name="attending_guests[]" value="${guest.id}" ${isCurrentGuest ? "checked" : ""} ${isCurrentGuest ? "style='pointer-events:none;' readonly" : ""}>
                                 ${guest.name}
                             `;
                             container.appendChild(label);
