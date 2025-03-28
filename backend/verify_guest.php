@@ -46,8 +46,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $rsvp_data = $rsvp_result->fetch_assoc();
     $already_rsvped = $rsvp_data['rsvp_count'] > 0;
 
-    // Get all family members by famID
-    $family_stmt = $conn->prepare("SELECT guest_id, CONCAT(first_name, ' ', last_name) AS name FROM guests WHERE famID = ?");
+    // Get all family members + whether they already RSVP'd
+    $family_stmt = $conn->prepare("
+        SELECT 
+            g.guest_id AS id, 
+            CONCAT(g.first_name, ' ', g.last_name) AS name,
+            EXISTS (
+                SELECT 1 FROM rsvps r WHERE r.guest_id = g.guest_id
+            ) AS has_rsvped
+        FROM guests g
+        WHERE g.famID = ?
+    ");
     $family_stmt->bind_param("s", $famID);
     $family_stmt->execute();
     $family_result = $family_stmt->get_result();
@@ -55,8 +64,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $family = [];
     while ($row = $family_result->fetch_assoc()) {
         $family[] = [
-            'id' => $row['guest_id'],
-            'name' => $row['name']
+            'id' => $row['id'],
+            'name' => $row['name'],
+            'has_rsvped' => (bool) $row['has_rsvped']  // Convert to boolean
         ];
     }
 

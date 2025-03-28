@@ -110,21 +110,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
                         result.family.forEach(guest => {
                             const isCurrentGuest = guest.id === result.guestID;
+                            const alreadyRSVPed = guest.has_rsvped === "1" || guest.has_rsvped === 1;
+                        
                             const checkboxContainer = document.createElement("div");
                             const uniqueId = `cbx-${guest.id}`;
-                            
+                        
                             checkboxContainer.innerHTML = `
-                                <input type="checkbox" id="${uniqueId}" name="attending_guests[]" value="${guest.id}" ${isCurrentGuest ? "checked" : ""} style="display: none;">
-                                <label for="${uniqueId}" class="checkbox-pill">
+                                <input type="checkbox" id="${uniqueId}" name="attending_guests[]" value="${guest.id}"
+                                    ${isCurrentGuest ? "checked" : ""}
+                                    ${alreadyRSVPed && !isCurrentGuest ? "disabled" : ""}
+                                    style="display: none;">
+                                <label for="${uniqueId}" class="checkbox-pill ${alreadyRSVPed && !isCurrentGuest ? "disabled-pill" : ""}">
                                     <div class="check">
                                         <svg width="18px" height="18px" viewBox="0 0 18 18">
                                             <path d="M1,9 L1,3.5 C1,2 2,1 3.5,1 L14.5,1 C16,1 17,2 17,3.5 L17,14.5 C17,16 16,17 14.5,17 L3.5,17 C2,17 1,16 1,14.5 L1,9 Z"></path>
                                             <polyline points="1 9 7 14 15 4"></polyline>
                                         </svg>
                                     </div>
-                                    <span class="guest-name">${guest.name}</span>
+                                    <span class="guest-name">${guest.name}${alreadyRSVPed && !isCurrentGuest ? " (RSVP’d)" : ""}</span>
                                 </label>
-                            `;                            
+                            `;
+                        
                             container.appendChild(checkboxContainer);
                         });
     
@@ -156,7 +162,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
 
                 let result = await response.json();
-                document.getElementById("confirmationMessage").textContent = result.message;
+                showMessage(result.message, result.success ? "success" : "error");
 
                 if (result.success) {
                     updateRestrictedAccess();
