@@ -110,7 +110,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                         result.family.forEach(guest => {
                             const isCurrentGuest = guest.id === result.guestID;
-                            const alreadyRSVPed = guest.has_rsvped === "1" || guest.has_rsvped === 1;
+                            const alreadyRSVPed = guest.has_rsvped;
                         
                             const checkboxContainer = document.createElement("div");
                             const uniqueId = `cbx-${guest.id}`;
