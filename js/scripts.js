@@ -118,9 +118,9 @@ document.addEventListener("DOMContentLoaded", function () {
                             checkboxContainer.innerHTML = `
                             <input type="checkbox" id="${uniqueId}" name="attending_guests[]" value="${guest.id}"
                                 ${isCurrentGuest ? "checked" : ""}
-                                ${alreadyRSVPed && !isCurrentGuest ? "disabled" : ""}
+                                ${alreadyRSVPed ? "disabled" : ""}
                                 style="display: none;">
-                            <label for="${uniqueId}" class="checkbox-pill ${alreadyRSVPed && !isCurrentGuest ? "disabled-pill" : ""}">
+                            <label for="${uniqueId}" class="checkbox-pill ${alreadyRSVPed ? "disabled-pill" : ""}">
                                 <div class="pill-content">
                                     <div class="check">
                                         <svg width="18px" height="18px" viewBox="0 0 18 18">
