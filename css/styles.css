@@ -522,6 +522,15 @@ nav .logo {
     background-color: #ddd !important;
   }
 
+  .rsvped-label {
+    color: red;
+    font-weight: bold;
+    font-family: 'Playfair Display', serif;
+    font-size: 0.9rem;
+    text-align: center;
+    margin-top: 0.4rem;
+  }  
+
 /* Small Screens (Switch to hamburger menu) */
 @media (max-width: 800px) {
     .menu-toggle {

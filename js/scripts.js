@@ -127,7 +127,8 @@ document.addEventListener("DOMContentLoaded", function () {
                                             <polyline points="1 9 7 14 15 4"></polyline>
                                         </svg>
                                     </div>
-                                    <span class="guest-name">${guest.name}${alreadyRSVPed && !isCurrentGuest ? " (RSVP’d)" : ""}</span>
+                                    <span class="guest-name">${guest.name}</span>
+                                    ${alreadyRSVPed && !isCurrentGuest ? '<span class="rsvped-label">RSVP’d</span>' : ''}
                                 </label>
                             `;
                         
