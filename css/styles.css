@@ -519,7 +519,7 @@ nav .logo {
   .disabled-pill {
     opacity: 0.5;
     pointer-events: none;
-    background-color: #f2f1ee !important;
+    background-color: #ddd !important;
   }
 
   .rsvped-overlay {
