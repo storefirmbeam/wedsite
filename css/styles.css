@@ -530,7 +530,7 @@ nav .logo {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(242, 241, 238, 0.5); /* Light tint over the whole pill */
+    background-color: rgba(242, 241, 238, 0.7); /* Light tint over the whole pill */
     display: flex;
     align-items: center;
     justify-content: center;
