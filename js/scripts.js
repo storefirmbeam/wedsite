@@ -72,10 +72,10 @@ document.addEventListener("DOMContentLoaded", function () {
     if (verifyGuestBtn) {
         verifyGuestBtn.addEventListener("click", async function (event) {
             event.preventDefault();
-            const guestID = document.getElementById("guestID").value;
+            const famID = document.getElementById("guestID").value;
     
             if (!guestID) {
-                showMessage("Please enter a Guest ID.");
+                showMessage("Please enter a Family ID.");
                 return;
             }
     
@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 let response = await fetch("https://darbyandcole.site/backend/verify_guest.php", {
                     method: "POST",
                     headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                    body: `guest_id=${encodeURIComponent(guestID)}`
+                    body: `fam_id=${encodeURIComponent(famID)}`
                 });
     
                 if (!response.ok) {
@@ -142,7 +142,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         rsvpFormModal.classList.add("show");
                     }
                 } else {
-                    showMessage("Invalid Guest ID. Please try again.", "error");
+                    showMessage("Invalid Family ID. Please try again.", "error");
                 }
             } catch (error) {
                 console.error("Error verifying Guest ID:", error);

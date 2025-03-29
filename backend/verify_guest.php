@@ -6,45 +6,18 @@ header('Content-Type: application/json');
 $conn = getDatabaseConnection(); // This returns a mysqli connection
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $guest_id = $_POST['guest_id'] ?? '';
+    $famID = $_POST['fam_id'] ?? '';
 
-    if (empty($guest_id)) {
-        echo json_encode(["valid" => false, "message" => "Guest ID is required."]);
+    if (empty($famID)) {
+        echo json_encode(["valid" => false, "message" => "Family ID is required."]);
         exit;
     }
 
     // Validate guest_id (alphanumeric and special characters)
-    if (!preg_match('/^[a-zA-Z0-9!@#$%^&*()_+\-=\[\]{};\'\\:"|,.<>\/?]+$/', $guest_id)) {
-        echo json_encode(["valid" => false, "message" => "Invalid Guest ID format."]);
+    if (!preg_match('/^[a-zA-Z0-9!@#$%^&*()_+\-=\[\]{};\'\\:"|,.<>\/?]+$/', $famID)) {
+        echo json_encode(["valid" => false, "message" => "Invalid ID format."]);
         exit;
     }
-
-    // Look up the guest by ID
-    $stmt = $conn->prepare("SELECT first_name, last_name, famID FROM guests WHERE guest_id = ?");
-    if (!$stmt) {
-        echo json_encode(["valid" => false, "message" => "Database error: " . $conn->error]);
-        exit;
-    }
-
-    $stmt->bind_param("s", $guest_id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    if ($result->num_rows === 0) {
-        echo json_encode(["valid" => false, "message" => "Invalid Guest ID."]);
-        exit;
-    }
-
-    $guest = $result->fetch_assoc();
-    $famID = $guest['famID'];
-
-    // Check RSVP status
-    $rsvp_stmt = $conn->prepare("SELECT COUNT(*) as rsvp_count FROM rsvps WHERE guest_id = ?");
-    $rsvp_stmt->bind_param("s", $guest_id);
-    $rsvp_stmt->execute();
-    $rsvp_result = $rsvp_stmt->get_result();
-    $rsvp_data = $rsvp_result->fetch_assoc();
-    $already_rsvped = $rsvp_data['rsvp_count'] > 0;
 
     // Get all family members + whether they already RSVP'd
     $family_stmt = $conn->prepare("
@@ -66,20 +39,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $family[] = [
             'id' => $row['id'],
             'name' => $row['name'],
-            'has_rsvped' => (bool) $row['has_rsvped']  // Convert to boolean
+            'has_rsvped' => (bool) $row['has_rsvped']
         ];
     }
+    
+    if (empty($family)) {
+        echo json_encode(["valid" => false, "message" => "No guests found for this Family ID."]);
+        exit;
+    }
+    
+    // Pick the first guest as the representative
+    $rep = $family[0];
+    
+    // Check if that person RSVP'd already
+    $rsvp_stmt = $conn->prepare("SELECT COUNT(*) as rsvp_count FROM rsvps WHERE guest_id = ?");
+    $rsvp_stmt->bind_param("s", $rep['id']);
+    $rsvp_stmt->execute();
+    $rsvp_result = $rsvp_stmt->get_result();
+    $rsvp_data = $rsvp_result->fetch_assoc();
+    $already_rsvped = $rsvp_data['rsvp_count'] > 0;
 
     // Store session info
-    $_SESSION['guestID'] = $guest_id;
-    $_SESSION['guestName'] = $guest['first_name'] . ' ' . $guest['last_name'];
+    $_SESSION['guestID'] = $rep['id'];
+    $_SESSION['guestName'] = $rep['name'];
 
     echo json_encode([
         "valid" => true,
         "message" => "Guest ID verified.",
-        "first_name" => $guest['first_name'],
-        "last_name" => $guest['last_name'],
-        "guestID" => $guest_id,
+        "first_name" => explode(' ', $rep['name'])[0],
+        "last_name" => explode(' ', $rep['name'])[1] ?? '',
+        "guestID" => $rep['id'],
         "unlock_restricted" => true,
         "rsvped" => $already_rsvped,
         "family" => $family
