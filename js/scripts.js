@@ -116,11 +116,12 @@ document.addEventListener("DOMContentLoaded", function () {
                             const uniqueId = `cbx-${guest.id}`;
                         
                             checkboxContainer.innerHTML = `
-                                <input type="checkbox" id="${uniqueId}" name="attending_guests[]" value="${guest.id}"
-                                    ${isCurrentGuest ? "checked" : ""}
-                                    ${alreadyRSVPed && !isCurrentGuest ? "disabled" : ""}
-                                    style="display: none;">
-                                <label for="${uniqueId}" class="checkbox-pill ${alreadyRSVPed && !isCurrentGuest ? "disabled-pill" : ""}">
+                            <input type="checkbox" id="${uniqueId}" name="attending_guests[]" value="${guest.id}"
+                                ${isCurrentGuest ? "checked" : ""}
+                                ${alreadyRSVPed && !isCurrentGuest ? "disabled" : ""}
+                                style="display: none;">
+                            <label for="${uniqueId}" class="checkbox-pill ${alreadyRSVPed && !isCurrentGuest ? "disabled-pill" : ""}">
+                                <div class="pill-content">
                                     <div class="check">
                                         <svg width="18px" height="18px" viewBox="0 0 18 18">
                                             <path d="M1,9 L1,3.5 C1,2 2,1 3.5,1 L14.5,1 C16,1 17,2 17,3.5 L17,14.5 C17,16 16,17 14.5,17 L3.5,17 C2,17 1,16 1,14.5 L1,9 Z"></path>
@@ -128,9 +129,11 @@ document.addEventListener("DOMContentLoaded", function () {
                                         </svg>
                                     </div>
                                     <span class="guest-name">${guest.name}</span>
-                                    ${alreadyRSVPed && !isCurrentGuest ? '<div class="rsvped-overlay">RSVP’d</div>' : ''}
-                                </label>
-                            `;
+                                </div>
+                                ${alreadyRSVPed && !isCurrentGuest ? '<div class="rsvped-overlay">RSVP’d</div>' : ''}
+                            </label>
+                        `;
+                        
                         
                             container.appendChild(checkboxContainer);
                         });

@@ -516,30 +516,37 @@ nav .logo {
     transition-delay: 0.15s;
   }
 
-  .disabled-pill {
-    filter: brightness(70%);
+/* Keep this */
+.disabled-pill {
     pointer-events: none;
     background-color: #ddd !important;
-  }
-
-  .rsvped-overlay {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: #f0a7a7;
-    font-weight: bold;
-    font-family: 'Playfair Display', serif;
-    font-size: 1.5rem;
-    z-index: 2;
-    text-align: center;
-    pointer-events: none;
-  }
-  
-  /* Ensure the pill box is positioned relatively for the overlay */
-  .checkbox-pill.disabled-pill {
     position: relative;
   }
+  
+/* Instead of darkening everything, target just this wrapper */
+.pill-content {
+filter: brightness(60%);
+}
+
+/* Overlay styles (remains the same) */
+.rsvped-overlay {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+color: #f0a7a7;
+font-weight: bold;
+font-family: 'Playfair Display', serif;
+font-size: 1.5rem;
+z-index: 2;
+text-align: center;
+pointer-events: none;
+}
+  
+/* Ensure the pill box is positioned relatively for the overlay */
+.checkbox-pill.disabled-pill {
+position: relative;
+}
   
 
 /* Small Screens (Switch to hamburger menu) */
