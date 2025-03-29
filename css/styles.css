@@ -524,9 +524,6 @@ nav .logo {
   }
   
 /* Instead of darkening everything, target just this wrapper */
-.pill-content {
-filter: brightness(60%);
-}
 
 /* Overlay styles (remains the same) */
 .rsvped-overlay {
