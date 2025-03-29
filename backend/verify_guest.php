@@ -1,6 +1,9 @@
 <?php
 require_once 'config.php'; // Database connection & session
 
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
 header('Content-Type: application/json');
 
 $conn = getDatabaseConnection(); // This returns a mysqli connection
@@ -82,4 +85,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 } else {
     echo json_encode(["valid" => false, "message" => "Invalid request method."]);
 }
-?>
