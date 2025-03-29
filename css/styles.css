@@ -524,7 +524,7 @@ nav .logo {
   }
   
 
-.rsvped-overlay {
+  .rsvped-overlay {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -537,11 +537,12 @@ nav .logo {
     text-align: center;
     pointer-events: none;
   
-    background-color: #f2f1ee; /* Light background to match modal */
+    background-color: rgba(242, 241, 238, 0.7); /* Light background with ~70% opacity */
     padding: 4px 10px;
     border-radius: 10px;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
   }
+  
   
   
 /* Ensure the pill box is positioned relatively for the overlay */
