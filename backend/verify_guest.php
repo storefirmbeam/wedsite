@@ -78,7 +78,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     ]);
 
     // Close everything
-    $stmt->close();
     $rsvp_stmt->close();
     $family_stmt->close();
     $conn->close();
