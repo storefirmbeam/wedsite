@@ -526,9 +526,14 @@ nav .logo {
 
   .rsvped-overlay {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(242, 241, 238, 0.7); /* Light tint over the whole pill */
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: #f0a7a7;
     font-weight: bold;
     font-family: 'Playfair Display', serif;
@@ -536,12 +541,9 @@ nav .logo {
     z-index: 2;
     text-align: center;
     pointer-events: none;
-  
-    background-color: rgba(242, 241, 238, 0.7); /* Light background with ~70% opacity */
-    padding: 4px 10px;
-    border-radius: 10px;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+    border-radius: 20px; /* match the pill box */
   }
+  
   
   
   
