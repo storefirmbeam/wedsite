@@ -128,7 +128,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                         </svg>
                                     </div>
                                     <span class="guest-name">${guest.name}</span>
-                                    ${alreadyRSVPed && !isCurrentGuest ? '<span class="rsvped-label">RSVP’d</span>' : ''}
+                                    ${alreadyRSVPed && !isCurrentGuest ? '<div class="rsvped-overlay">RSVP’d</div>' : ''}
                                 </label>
                             `;
                         

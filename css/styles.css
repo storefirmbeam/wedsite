@@ -522,14 +522,25 @@ nav .logo {
     background-color: #ddd !important;
   }
 
-  .rsvped-label {
+  .rsvped-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     color: red;
     font-weight: bold;
     font-family: 'Playfair Display', serif;
-    font-size: 0.9rem;
+    font-size: 1rem;
+    z-index: 2;
     text-align: center;
-    margin-top: 0.4rem;
-  }  
+    pointer-events: none;
+  }
+  
+  /* Ensure the pill box is positioned relatively for the overlay */
+  .checkbox-pill.disabled-pill {
+    position: relative;
+  }
+  
 
 /* Small Screens (Switch to hamburger menu) */
 @media (max-width: 800px) {
