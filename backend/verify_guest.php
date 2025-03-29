@@ -62,6 +62,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $rsvp_data = $rsvp_result->fetch_assoc();
     $already_rsvped = $rsvp_data['rsvp_count'] > 0;
 
+    $all_rsvped = true;
+    foreach ($family as $member) {
+        if (!$member['has_rsvped']) {
+            $all_rsvped = false;
+            break;
+        }
+    }
+
     // Store session info
     $_SESSION['guestID'] = $rep['id'];
     $_SESSION['guestName'] = $rep['name'];
@@ -74,6 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         "guestID" => $rep['id'],
         "unlock_restricted" => true,
         "rsvped" => $already_rsvped,
+        "all_rsvped" => $all_rsvped,
         "family" => $family
     ]);
 

@@ -94,10 +94,10 @@ document.addEventListener("DOMContentLoaded", function () {
     
                 // If valid guest ID, show RSVP form unless user already submitted rsvp
                 if (result.valid) {
-                    if (result.rsvped) {
-                        location.reload();
+                    if (result.all_rsvped) {
+                        location.reload();  // Everyone RSVP'd → go home
                     } else {
-                        showMessage("Guest ID verified!", "success");
+                        showMessage("Family verified! Select who will be attending.", "success");
     
                         // ✅ Render checkboxes for family members
                         const container = document.getElementById("guestCheckboxes");
