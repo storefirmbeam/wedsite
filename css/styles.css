@@ -517,7 +517,7 @@ nav .logo {
   }
 
   .disabled-pill {
-    opacity: 0.5;
+    opacity: 0.3;
     pointer-events: none;
     background-color: #ddd !important;
   }
