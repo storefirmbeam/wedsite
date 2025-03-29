@@ -103,11 +103,6 @@ document.addEventListener("DOMContentLoaded", function () {
                         const container = document.getElementById("guestCheckboxes");
                         container.innerHTML = "";
 
-                        // Move the current RSVPing guest to the front
-                        result.family.sort((a, b) => {
-                            return a.id === result.guestID ? -1 : b.id === result.guestID ? 1 : 0;
-                        });
-
                         result.family.forEach(guest => {
                             const isCurrentGuest = guest.id === result.guestID;
                             const alreadyRSVPed = guest.has_rsvped;
@@ -118,7 +113,6 @@ document.addEventListener("DOMContentLoaded", function () {
                             checkboxContainer.innerHTML = `
                             <input type="checkbox" id="${uniqueId}" name="attending_guests[]" value="${guest.id}"
                                 ${guest.has_rsvped ? "disabled" : ""}
-                                ${isCurrentGuest && !guest.has_rsvped ? "checked" : ""}
                                 style="display: none;">
                             <label for="${uniqueId}" class="checkbox-pill ${guest.has_rsvped ? "disabled-pill" : ""}">
                                 <div class="pill-content">
@@ -132,6 +126,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                 </div>
                                 ${guest.has_rsvped ? '<div class="rsvped-overlay">RSVP’d</div>' : ''}
                             </label>
+
                         `;
                         
                         
