@@ -117,10 +117,10 @@ document.addEventListener("DOMContentLoaded", function () {
                         
                             checkboxContainer.innerHTML = `
                             <input type="checkbox" id="${uniqueId}" name="attending_guests[]" value="${guest.id}"
-                                ${isCurrentGuest ? "checked" : ""}
-                                ${alreadyRSVPed ? "disabled" : ""}
+                                ${guest.has_rsvped ? "disabled" : ""}
+                                ${isCurrentGuest && !guest.has_rsvped ? "checked" : ""}
                                 style="display: none;">
-                            <label for="${uniqueId}" class="checkbox-pill ${alreadyRSVPed ? "disabled-pill" : ""}">
+                            <label for="${uniqueId}" class="checkbox-pill ${guest.has_rsvped ? "disabled-pill" : ""}">
                                 <div class="pill-content">
                                     <div class="check">
                                         <svg width="18px" height="18px" viewBox="0 0 18 18">
@@ -130,7 +130,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                     </div>
                                     <span class="guest-name">${guest.name}</span>
                                 </div>
-                                ${alreadyRSVPed && !isCurrentGuest ? '<div class="rsvped-overlay">RSVP’d</div>' : ''}
+                                ${guest.has_rsvped ? '<div class="rsvped-overlay">RSVP’d</div>' : ''}
                             </label>
                         `;
                         
