@@ -158,7 +158,7 @@ document.addEventListener("DOMContentLoaded", function () {
         
             if (unchecked.length > 0) {
                 const names = unchecked.map(cb => cb.nextElementSibling.querySelector('.guest-name').textContent.trim());
-                const message = `It looks like ${names.join(" and ")} ${names.length > 1 ? "haven’t" : "hasn’t"} been selected. Are they not attending?`;
+                const message = `It looks like ${names.join(" and ")} ${names.length > 1 ? "haven’t" : "hasn’t"} been selected. Not Attending?`;
         
                 document.getElementById("unselectedMessage").textContent = message;
                 document.getElementById("unselectedModal").classList.add("show");
@@ -167,7 +167,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     }
-    
+
     function submitRSVPForm() {
         const formData = new FormData(document.getElementById("rsvpForm"));
     
