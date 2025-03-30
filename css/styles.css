@@ -620,7 +620,7 @@ nav .logo {
 
   label[for="message"] {
     margin-top: 4px;
-    margin-bottom: 4px; /* ↓ Reduce bottom spacing */
+    margin-bottom: -5px; /* ↓ Reduce bottom spacing */
 }
 
   #confirmationMessage {
