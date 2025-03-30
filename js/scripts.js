@@ -154,19 +154,23 @@ document.addEventListener("DOMContentLoaded", function () {
                         hiddenGuestListInput.value = allGuestIDs.join(",");
                         rsvpForm.appendChild(hiddenGuestListInput);
                         const markAllBtn = document.getElementById("markAllNotAttending");
-
+                        
                         if (markAllBtn) {
                             markAllBtn.addEventListener("click", () => {
                                 const checkboxes = document.querySelectorAll('#guestCheckboxes input[type="checkbox"]:not(:disabled)');
                                 checkboxes.forEach(cb => cb.checked = false);
                         
-                                // Trigger unselected modal
-                                const names = checkboxes.map(cb => cb.nextElementSibling.querySelector('.guest-name').textContent.trim());
-                                const message = `It looks like ${names.join(" and ")} ${names.length > 1 ? "haven’t" : "hasn’t"} been selected. Not attending?`;
+                                // Simulate what happens when the form is submitted with no guests selected
+                                const names = Array.from(checkboxes).map(cb =>
+                                    cb.nextElementSibling.querySelector('.guest-name').textContent.trim()
+                                );
+                                const message = `It looks like ${names.join(" and ")} ${names.length > 1 ? "haven’t" : "hasn’t"} been selected. Not Attending?`;
+                        
                                 document.getElementById("unselectedMessage").textContent = message;
                                 document.getElementById("unselectedModal").classList.add("show");
                             });
-                        }                        
+                        }
+                        
                     }
                 } else {
                     showMessage("Invalid Family ID. Please try again.", "error");
