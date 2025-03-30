@@ -212,18 +212,18 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(result => {
             if (result.success) {
                 const confirmationText = selectedGuests > 0
-                    ? `You RSVP’d for ${selectedGuests} ${selectedGuests === 1 ? 'guest' : 'guests'}. We’re so excited to celebrate with you!`
-                    : `You RSVP’d with no attendees. We’ll miss you, but thank you for letting us know!`;
-
-                const confirmationPara = document.getElementById("confirmationMessage");
-                confirmationPara.textContent = confirmationText;
-                confirmationPara.classList.add("show");
-
-                setTimeout(() => {
-                    document.getElementById("rsvpFormModal").classList.remove("show");
-                    confirmationPara.textContent = "";
-                    confirmationPara.classList.remove("show");
-                }, 3000);
+                ? `You RSVP’d for ${selectedGuests} ${selectedGuests === 1 ? 'guest' : 'guests'}. We’re so excited to celebrate with you!`
+                : `You RSVP’d with no attendees. We’ll miss you, but thank you for letting us know!`;
+        
+                // Close the RSVP form modal
+                document.getElementById("rsvpFormModal").classList.remove("show");
+            
+                // Set and show the final confirmation modal
+                const finalModal = document.getElementById("finalConfirmationModal");
+                const finalMsg = document.getElementById("finalConfirmationMessage");
+                finalMsg.textContent = confirmationText;
+                finalModal.classList.add("show");
+                
             } else {
                 showMessage(result.message, "error");
             }
