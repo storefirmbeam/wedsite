@@ -1,8 +1,8 @@
 <?php
 require_once 'config.php'; // Database connection & session
 
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
+// ini_set('display_errors', 1);
+// error_reporting(E_ALL);
 
 header('Content-Type: application/json');
 
