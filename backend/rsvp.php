@@ -5,15 +5,15 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-$conn = getDatabaseConnection(); // mysqli connection
+$conn = getDatabaseConnection();
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $message = $_POST['message'] ?? '';
     $attendingGuests = $_POST['attending_guests'] ?? [];
     $allGuests = explode(',', $_POST['all_guest_ids'] ?? '');
 
-    // Sanitize message
-    $safeMessage = htmlspecialchars($message, ENT_QUOTES, 'UTF-8');
+    // Sanitize message for storage
+    $safeMessage = htmlspecialchars(trim($message), ENT_QUOTES, 'UTF-8');
 
     // Begin transaction
     $conn->begin_transaction();
@@ -26,7 +26,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         ");
 
         foreach ($allGuests as $guestID) {
-            $attending = in_array($guestID, $attendingGuests) ? 1 : 0;
+            $guestID = (int)trim($guestID);
+            $attending = in_array((string)$guestID, $attendingGuests) ? 1 : 0;
+
             $stmt->bind_param("iis", $guestID, $attending, $safeMessage);
             $stmt->execute();
         }
@@ -39,7 +41,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     } catch (Exception $e) {
         $conn->rollback();
         echo json_encode(['success' => false, 'message' => 'Error submitting RSVP.']);
+        error_log("RSVP Error: " . $e->getMessage());
     }
 
     $conn->close();
 }
+?>
