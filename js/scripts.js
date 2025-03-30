@@ -150,31 +150,62 @@ document.addEventListener("DOMContentLoaded", function () {
     // RSVP Form Submission
     const rsvpForm = document.getElementById("rsvpForm");
     if (rsvpForm) {
-        rsvpForm.addEventListener("submit", async function(event) {
+        rsvpForm.addEventListener("submit", function(event) {
             event.preventDefault();
-            let formData = new FormData(this);
-
-            try {
-                let response = await fetch("https://darbyandcole.site/backend/rsvp.php", {
-                    method: "POST",
-                    body: formData
-                });
-
-                let result = await response.json();
-                showMessage(result.message, result.success ? "success" : "error");
-
-                if (result.success) {
-                    updateRestrictedAccess();
-                    setTimeout(() => {
-                        rsvpFormModal.classList.remove("show");
-                    }, 1500);
-                }
-            } catch (error) {
-                console.error("Error submitting RSVP:", error);
-                showMessage("Error submitting RSVP. Contact administration.", "error");
+        
+            const checked = Array.from(document.querySelectorAll('#guestCheckboxes input[type="checkbox"]:checked'));
+            const unchecked = Array.from(document.querySelectorAll('#guestCheckboxes input[type="checkbox"]:not(:checked):not(:disabled)'));
+        
+            if (unchecked.length > 0) {
+                const names = unchecked.map(cb => cb.nextElementSibling.querySelector('.guest-name').textContent.trim());
+                const message = `It looks like ${names.join(" and ")} ${names.length > 1 ? "haven’t" : "hasn’t"} been selected. Are they not attending?`;
+        
+                document.getElementById("unselectedMessage").textContent = message;
+                document.getElementById("unselectedModal").classList.add("show");
+            } else {
+                submitRSVPForm(); // No missing guests — proceed
             }
         });
     }
+    
+    function submitRSVPForm() {
+        const formData = new FormData(document.getElementById("rsvpForm"));
+    
+        fetch("https://darbyandcole.site/backend/rsvp.php", {
+            method: "POST",
+            body: formData
+        })
+        .then(response => response.json())
+        .then(result => {
+            showMessage(result.message, result.success ? "success" : "error");
+    
+            if (result.success) {
+                updateRestrictedAccess();
+                setTimeout(() => {
+                    document.getElementById("rsvpFormModal").classList.remove("show");
+                }, 1500);
+            }
+        })
+        .catch(error => {
+            console.error("Error submitting RSVP:", error);
+            showMessage("Error submitting RSVP. Contact administration.", "error");
+        });
+    }
+    
+    // Handle confirm or go-back from unselected modal
+    document.getElementById("confirmNotComing").addEventListener("click", function () {
+        document.getElementById("unselectedModal").classList.remove("show");
+        submitRSVPForm();
+    });
+    
+    document.getElementById("goBackToSelection").addEventListener("click", function () {
+        document.getElementById("unselectedModal").classList.remove("show");
+    });
+    
+    document.getElementById("unselectedClose").addEventListener("click", function () {
+        document.getElementById("unselectedModal").classList.remove("show");
+    });
+    
 
     // Logout functionality
     const logout = document.getElementById("logout-btn");
