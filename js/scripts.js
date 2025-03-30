@@ -97,7 +97,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     if (result.all_rsvped) {
                         location.reload();  // Everyone RSVP'd → go home
                     } else {
-                        showMessage("Family verified! Select who will be attending.", "success");
+                        showMessage("Select who will be attending.", "success");
     
                         // ✅ Render checkboxes for family members
                         const container = document.getElementById("guestCheckboxes");

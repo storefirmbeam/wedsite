@@ -315,7 +315,6 @@ header p {
 
 .success-message {
     color: #8898c4;
-    font-weight: bold;
     font-family: 'Playfair Display', serif;
     display: block;
     padding: 5px;
@@ -515,14 +514,6 @@ nav .logo {
     transition: all 0.2s linear;
     transition-delay: 0.15s;
   }
-
-/* Keep this */
-/* .disabled-pill {
-    pointer-events: none;
-    background-color: #ddd !important;
-    position: relative;
-  } */
-  
 
   .rsvped-overlay {
     position: absolute;
