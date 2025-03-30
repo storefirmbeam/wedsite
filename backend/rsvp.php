@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     try {
         $stmt = $conn->prepare("
-            INSERT INTO rsvp (guest_id, attending, message)
+            INSERT INTO rsvps (guest_id, attending, message)
             VALUES (?, ?, ?)
             ON DUPLICATE KEY UPDATE attending = VALUES(attending), message = VALUES(message)
         ");

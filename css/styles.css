@@ -606,6 +606,7 @@ nav .logo {
     background: none;
     border: none;
     color: #8898c4;
+    white-space: nowrap; /* Prevent text from wrapping */
     font-family: 'Playfair Display', serif;
     font-size: 0.95rem;
     cursor: pointer;
