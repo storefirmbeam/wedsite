@@ -1,23 +1,18 @@
 <?php
-require_once 'config.php'; // Ensure DB connection and session
+require_once 'config.php';
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-$conn = getDatabaseConnection(); // This returns a mysqli connection
+$conn = getDatabaseConnection(); // mysqli connection
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $attending = 1; // Everyone checked is attending
     $message = $_POST['message'] ?? '';
     $attendingGuests = $_POST['attending_guests'] ?? [];
+    $allGuests = explode(',', $_POST['all_guest_ids'] ?? '');
 
-    if (empty($attendingGuests)) {
-        echo json_encode(['success' => false, 'message' => 'No guests selected.']);
-        exit;
-    }
-
-    // Sanitize message (once, for simplicity)
+    // Sanitize message
     $safeMessage = htmlspecialchars($message, ENT_QUOTES, 'UTF-8');
 
     // Begin transaction
@@ -25,12 +20,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     try {
         $stmt = $conn->prepare("
-            REPLACE INTO rsvps (guest_id, attending, message)
+            INSERT INTO rsvp (guest_id, attending, message)
             VALUES (?, ?, ?)
+            ON DUPLICATE KEY UPDATE attending = VALUES(attending), message = VALUES(message)
         ");
 
-        foreach ($attendingGuests as $guestID) {
-            $stmt->bind_param("sis", $guestID, $attending, $safeMessage);
+        foreach ($allGuests as $guestID) {
+            $attending = in_array($guestID, $attendingGuests) ? 1 : 0;
+            $stmt->bind_param("iis", $guestID, $attending, $safeMessage);
             $stmt->execute();
         }
 
@@ -46,4 +43,3 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     $conn->close();
 }
-?>

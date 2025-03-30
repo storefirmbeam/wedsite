@@ -601,7 +601,37 @@ nav .logo {
   #unselectedModal #goBackToSelection:hover {
     color: #d1ab78;
   }
+
+  #markAllNotAttending {
+    background: none;
+    border: none;
+    color: #8898c4;
+    font-family: 'Playfair Display', serif;
+    font-size: 0.95rem;
+    cursor: pointer;
+    text-decoration: underline;
+    display: inline-block;
+    margin-top: 8px;
+    margin-bottom: 4px;
+  }
   
+  #markAllNotAttending:hover {
+    color: #d1ab78;
+  }  
+
+  #confirmationMessage {
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    margin-top: 12px;
+    color: #8898c4;
+  }
+  
+  #confirmationMessage.show {
+    opacity: 1;
+  }  
 
 /* Small Screens (Switch to hamburger menu) */
 @media (max-width: 800px) {
