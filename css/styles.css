@@ -612,8 +612,8 @@ nav .logo {
     cursor: pointer;
     text-decoration: underline;
     display: inline-block;
-    margin-top: 10px;
-    margin-bottom: -5px;  /* 👈 Add this line or set it to 0 */
+    margin-top: 5px;
+    margin-bottom: -15px;  /* 👈 Add this line or set it to 0 */
   }
   
   #markAllNotAttending:hover {
