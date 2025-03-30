@@ -113,6 +113,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             checkboxContainer.innerHTML = `
                             <input type="checkbox" id="${uniqueId}" name="attending_guests[]" value="${guest.id}"
                                 ${guest.has_rsvped ? "disabled" : ""}
+                                style="display: none;">
                             <label for="${uniqueId}" class="checkbox-pill ${guest.has_rsvped ? "disabled-pill" : ""}">
                                 <div class="pill-content">
                                     <div class="check">
