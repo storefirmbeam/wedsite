@@ -48,8 +48,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         echo json_encode(['success' => true, 'message' => 'RSVP submitted successfully!']);
     } catch (Exception $e) {
         $conn->rollback();
-        echo json_encode(['success' => false, 'message' => 'Error submitting RSVP.']);
-        error_log("RSVP Error: " . $e->getMessage());
+        $errorMessage = "Error submitting RSVP: " . $e->getMessage();
+        echo json_encode(['success' => false, 'message' => $errorMessage]);
+        error_log("RSVP Error: " . $errorMessage);
     }
 
     $conn->close();
