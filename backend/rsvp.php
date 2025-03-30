@@ -24,13 +24,21 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             VALUES (?, ?, ?)
             ON DUPLICATE KEY UPDATE attending = VALUES(attending), message = VALUES(message)
         ");
-
+        
+        if (!$stmt) {
+            throw new Exception("Prepare failed: " . $conn->error);
+        }
+        
         foreach ($allGuests as $guestID) {
-            $guestID = (int)trim($guestID);
-            $attending = in_array((string)$guestID, $attendingGuests) ? 1 : 0;
-
-            $stmt->bind_param("iis", $guestID, $attending, $safeMessage);
-            $stmt->execute();
+            $guestID = trim($guestID); // keep as string
+            $attending = in_array($guestID, $attendingGuests) ? 1 : 0;
+        
+            $stmt->bind_param("sis", $guestID, $attending, $safeMessage);
+            $success = $stmt->execute();
+        
+            if (!$success) {
+                throw new Exception("Execute failed: " . $stmt->error);
+            }
         }
 
         $stmt->close();

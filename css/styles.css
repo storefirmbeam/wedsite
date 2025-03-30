@@ -612,7 +612,7 @@ nav .logo {
     text-decoration: underline;
     display: inline-block;
     margin-top: 8px;
-    margin-bottom: 4px;
+    margin-bottom: 1px;
   }
   
   #markAllNotAttending:hover {
