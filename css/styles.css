@@ -552,14 +552,14 @@ nav .logo {
 /* RSVP Unselected Modal Styling */
 #unselectedModal .modal-content h2 {
     color: #8898c4;
-    font-family: 'Playfair Display SC', serif;
+    font-family: 'Playfair Display', serif;
     font-weight: 400;
     font-size: 1.5rem;
     margin-bottom: 10px;
   }
   
   #unselectedModal .modal-content p {
-    color: #333;
+    color: #8898c4;
     font-family: 'Playfair Display', serif;
     font-size: 1rem;
     margin-bottom: 20px;
@@ -569,7 +569,7 @@ nav .logo {
   /* Primary Button */
   #unselectedModal button#confirmNotComing {
     background-color: #f0a7a7;
-    color: #fff;
+    color: #f2f1ee;
     border: none;
     padding: 12px 24px;
     font-size: 1rem;
