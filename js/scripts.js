@@ -51,6 +51,13 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+    const finalClose = document.getElementById("finalConfirmationClose");
+    if (finalClose) {
+        finalClose.addEventListener("click", () => {
+            document.getElementById("finalConfirmationModal").classList.remove("show");
+        });
+    }
+
     closeButtons.forEach(button => {
         button.addEventListener("click", () => {
             rsvpModal.classList.remove("show");
@@ -212,7 +219,7 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(result => {
             if (result.success) {
                 const confirmationText = selectedGuests > 0
-                ? `You RSVP’d for ${selectedGuests} ${selectedGuests === 1 ? 'guest' : 'guests'}. We’re so excited to celebrate with you!`
+                ? `You RSVP’d for ${selectedGuests} ${selectedGuests === 1 ? 'guest' : 'guests'}. We’re so excited to celebrate with you! If any changes need to be made please contact us`
                 : `You RSVP’d with no attendees. We’ll miss you, but thank you for letting us know!`;
         
                 // Close the RSVP form modal
@@ -223,7 +230,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 const finalMsg = document.getElementById("finalConfirmationMessage");
                 finalMsg.textContent = confirmationText;
                 finalModal.classList.add("show");
-                
+
             } else {
                 showMessage(result.message, "error");
             }

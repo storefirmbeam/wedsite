@@ -634,6 +634,16 @@ nav .logo {
     opacity: 1;
   }  
 
+/* Message Text */
+#finalConfirmationModal .modal-content p {
+    color: #8898c4;
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    margin-bottom: 16px;
+    line-height: 1.4;
+}
+    
+
 /* Small Screens (Switch to hamburger menu) */
 @media (max-width: 800px) {
     .menu-toggle {
