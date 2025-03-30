@@ -154,7 +154,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         hiddenGuestListInput.value = allGuestIDs.join(",");
                         rsvpForm.appendChild(hiddenGuestListInput);
                         const markAllBtn = document.getElementById("markAllNotAttending");
-                        
+
                         if (markAllBtn) {
                             markAllBtn.addEventListener("click", () => {
                                 const checkboxes = document.querySelectorAll('#guestCheckboxes input[type="checkbox"]:not(:disabled)');
@@ -231,7 +231,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (result.success) {
                 const confirmationText = selectedGuests > 0
                 ? `You RSVP’d for ${selectedGuests} ${selectedGuests === 1 ? 'guest' : 'guests'}. We’re so excited to celebrate with you! If any changes need to be made please contact us`
-                : `You RSVP’d with no attendees. We’ll miss you, but thank you for letting us know!`;
+                : `You RSVP’d with no attendees. We’ll miss you, but thank you for letting us know! If any changes need to be made please contact us.`;
         
                 // Close the RSVP form modal
                 document.getElementById("rsvpFormModal").classList.remove("show");
