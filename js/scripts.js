@@ -113,7 +113,6 @@ document.addEventListener("DOMContentLoaded", function () {
                             checkboxContainer.innerHTML = `
                             <input type="checkbox" id="${uniqueId}" name="attending_guests[]" value="${guest.id}"
                                 ${guest.has_rsvped ? "disabled" : ""}
-                                style="display: none;">
                             <label for="${uniqueId}" class="checkbox-pill ${guest.has_rsvped ? "disabled-pill" : ""}">
                                 <div class="pill-content">
                                     <div class="check">
@@ -136,7 +135,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                         // 🔁 Create hidden input with all RSVP-able guest IDs (non-disabled)
                         const allGuestIDs = result.family
-                        
+
                         .filter(guest => !guest.has_rsvped)
                         .map(guest => guest.id);
 
@@ -153,7 +152,6 @@ document.addEventListener("DOMContentLoaded", function () {
                                 checkboxes.forEach(cb => cb.checked = false);
                             });
                         }
-
                     }
                 } else {
                     showMessage("Invalid Family ID. Please try again.", "error");
@@ -188,11 +186,23 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function submitRSVPForm() {
-        const formData = new FormData(document.getElementById("rsvpForm"));
-    
-        // Count how many were selected
-        const selectedGuests = Array.from(document.querySelectorAll('#guestCheckboxes input[type="checkbox"]:checked')).length;
-    
+        const rsvpFormElement = document.getElementById("rsvpForm");
+        const formData = new FormData(rsvpFormElement);
+
+        // Manually collect all checked guest IDs since hidden checkboxes don't auto-submit
+        const checked = Array.from(document.querySelectorAll('#guestCheckboxes input[type="checkbox"]:checked'));
+        const checkedIDs = checked.map(cb => cb.value);
+
+        // Clear any old copies of attending_guests[]
+        formData.delete("attending_guests[]");
+
+        // Append selected IDs
+        checkedIDs.forEach(id => {
+            formData.append("attending_guests[]", id);
+        });
+
+        const selectedGuests = checked.length;
+
         fetch("https://darbyandcole.site/backend/rsvp.php", {
             method: "POST",
             body: formData
@@ -200,21 +210,18 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(response => response.json())
         .then(result => {
             if (result.success) {
-                // 👇 Build the success message
                 const confirmationText = selectedGuests > 0
                     ? `You RSVP’d for ${selectedGuests} ${selectedGuests === 1 ? 'guest' : 'guests'}. We’re so excited to celebrate with you!`
                     : `You RSVP’d with no attendees. We’ll miss you, but thank you for letting us know!`;
-    
+
                 const confirmationPara = document.getElementById("confirmationMessage");
                 confirmationPara.textContent = confirmationText;
-                confirmationPara.classList.add("success-message");
-
                 confirmationPara.classList.add("show");
-    
-                // Show the message for a few seconds, then close modal
+
                 setTimeout(() => {
                     document.getElementById("rsvpFormModal").classList.remove("show");
                     confirmationPara.textContent = "";
+                    confirmationPara.classList.remove("show");
                 }, 3000);
             } else {
                 showMessage(result.message, "error");
@@ -225,8 +232,7 @@ document.addEventListener("DOMContentLoaded", function () {
             showMessage("Error submitting RSVP. Contact administration.", "error");
         });
     }
-    
-    
+      
     // Handle confirm or go-back from unselected modal
     document.getElementById("confirmNotComing").addEventListener("click", function () {
         document.getElementById("unselectedModal").classList.remove("show");
