@@ -613,7 +613,7 @@ nav .logo {
     text-decoration: underline;
     display: inline-block;
     margin-top: 5px;
-    margin-bottom: -15px;  /* 👈 Add this line or set it to 0 */
+    margin-bottom: -30px;  /* 👈 Add this line or set it to 0 */
   }
   
   #markAllNotAttending:hover {
