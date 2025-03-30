@@ -544,14 +544,61 @@ nav .logo {
     border-radius: 20px; /* match the pill box */
   }
   
-  
-  
-  
 /* Ensure the pill box is positioned relatively for the overlay */
 .checkbox-pill.disabled-pill {
     position: relative;
   }
+
+/* RSVP Unselected Modal Styling */
+#unselectedModal .modal-content h2 {
+    color: #8898c4;
+    font-family: 'Playfair Display SC', serif;
+    font-weight: 400;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
   
+  #unselectedModal .modal-content p {
+    color: #333;
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    line-height: 1.4;
+  }
+  
+  /* Primary Button */
+  #unselectedModal button#confirmNotComing {
+    background-color: #f0a7a7;
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-family: 'Playfair Display', serif;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  #unselectedModal button#confirmNotComing:hover {
+    background-color: #8898c4;
+  }
+  
+  /* Link-style Button */
+  #unselectedModal #goBackToSelection {
+    background: none;
+    border: none;
+    color: #8898c4;
+    font-family: 'Playfair Display', serif;
+    font-size: 0.95rem;
+    margin-top: 12px;
+    cursor: pointer;
+    text-decoration: underline;
+    display: inline-block;
+  }
+  
+  #unselectedModal #goBackToSelection:hover {
+    color: #d1ab78;
+  }
 
 /* Small Screens (Switch to hamburger menu) */
 @media (max-width: 800px) {
