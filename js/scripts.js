@@ -55,6 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (finalClose) {
         finalClose.addEventListener("click", () => {
             document.getElementById("finalConfirmationModal").classList.remove("show");
+            location.reload(); // 🔄 Refresh the page
         });
     }
 
