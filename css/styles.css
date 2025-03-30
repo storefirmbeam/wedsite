@@ -614,7 +614,7 @@ nav .logo {
     display: block;               /* ✅ Ensure it's block-level */
     margin: 10px auto -30px auto; /* ✅ Center horizontally */
     margin-top: 5px;
-    margin-bottom: 5px;  /* 👈 Add this line or set it to 0 */
+    margin-bottom: -15px;  /* 👈 Add this line or set it to 0 */
   }
   
   #markAllNotAttending:hover {
