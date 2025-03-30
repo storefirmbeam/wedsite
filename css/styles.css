@@ -550,7 +550,15 @@ nav .logo {
   }
 
 /* RSVP Unselected Modal Styling */
-#unselectedModal .modal-content h2 {
+#unselectedModal .modal-content {
+    width: 80%;
+    max-width: 340px; /* Narrower than RSVP modal */
+    padding: 20px 16px 16px;
+    text-align: center;
+  }
+  
+  /* Header */
+  #unselectedModal .modal-content h2 {
     color: #8898c4;
     font-family: 'Playfair Display', serif;
     font-weight: 400;
@@ -558,15 +566,16 @@ nav .logo {
     margin-bottom: 10px;
   }
   
+  /* Message Text */
   #unselectedModal .modal-content p {
     color: #8898c4;
     font-family: 'Playfair Display', serif;
     font-size: 1rem;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
     line-height: 1.4;
   }
   
-  /* Primary Button */
+  /* Confirm Button */
   #unselectedModal button#confirmNotComing {
     background-color: #f0a7a7;
     color: #f2f1ee;
@@ -577,28 +586,31 @@ nav .logo {
     border-radius: 6px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    margin-bottom: 8px; /* Reduce space before "go back" link */
   }
   
+  /* Confirm Button Hover */
   #unselectedModal button#confirmNotComing:hover {
     background-color: #8898c4;
   }
   
-  /* Link-style Button */
+  /* Link-style Go Back Button */
   #unselectedModal #goBackToSelection {
     background: none;
     border: none;
     color: #8898c4;
     font-family: 'Playfair Display', serif;
     font-size: 0.95rem;
-    margin-top: 12px;
     cursor: pointer;
     text-decoration: underline;
     display: inline-block;
+    margin: 0; /* No extra margin */
   }
   
   #unselectedModal #goBackToSelection:hover {
     color: #d1ab78;
   }
+  
 
 /* Small Screens (Switch to hamburger menu) */
 @media (max-width: 800px) {
