@@ -608,7 +608,7 @@ nav .logo {
     max-width: 300px; /* or match your modal-content's actual width */
     margin: 10px auto;
     text-align: center;
-    /* background-color: yellow; for debugging */
+    background-color: none; /* for debugging */
     border: none;
     color: #8898c4;
     font-family: 'Playfair Display', serif;
