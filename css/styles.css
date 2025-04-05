@@ -603,19 +603,20 @@ nav .logo {
   }
 
   #markAllNotAttending {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 0;
     background: none;
     border: none;
     color: #8898c4;
-    white-space: nowrap; /* Prevent text from wrapping */
     font-family: 'Playfair Display', serif;
     font-size: 0.95rem;
     cursor: pointer;
     text-decoration: underline;
-    display: inline-block;
-    margin: 0 auto; /* Center horizontally */
-    margin-top: 5px;
-    margin-bottom: -15px;  /* 👈 Add this line or set it to 0 */
-  }
+}
+
   
   #markAllNotAttending:hover {
     color: #d1ab78;
