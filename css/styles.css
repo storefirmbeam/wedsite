@@ -611,8 +611,8 @@ nav .logo {
     font-size: 0.95rem;
     cursor: pointer;
     text-decoration: underline;
-    display: block;               /* ✅ Ensure it's block-level */
-    margin: 10px auto -30px auto; /* ✅ Center horizontally */
+    display: block; /* Ensure it's block-level */
+    margin: 0 auto; /* Center horizontally */
     margin-top: 5px;
     margin-bottom: -15px;  /* 👈 Add this line or set it to 0 */
   }
