@@ -615,6 +615,7 @@ nav .logo {
     margin: 0 auto; /* Center horizontally */
     margin-top: 5px;
     margin-bottom: -15px;  /* 👈 Add this line or set it to 0 */
+    text-align: center;
   }
   
   #markAllNotAttending:hover {
