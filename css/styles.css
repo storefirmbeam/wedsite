@@ -604,12 +604,11 @@ nav .logo {
 
   #markAllNotAttending {
     display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 10px;
-    margin-bottom: 0;
-    background: none;
-    background-color: yellow;
+    width: 100%; /* take full width of the parent */
+    max-width: 300px; /* or match your modal-content's actual width */
+    margin: 10px auto;
+    text-align: center;
+    background-color: yellow; /* for debugging */
     border: none;
     color: #8898c4;
     font-family: 'Playfair Display', serif;
@@ -617,7 +616,6 @@ nav .logo {
     cursor: pointer;
     text-decoration: underline;
 }
-
   
   #markAllNotAttending:hover {
     color: #d1ab78;
