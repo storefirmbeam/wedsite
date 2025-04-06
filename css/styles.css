@@ -611,7 +611,7 @@ nav .logo {
     text-align: center;
     background-color: #f2f1ee; /* for debugging */
     border: none;
-    color: #8898c4;
+    color: #f0a7a7;
     font-family: 'Playfair Display', serif;
     font-size: 0.95rem;
     cursor: pointer;
@@ -619,7 +619,7 @@ nav .logo {
 }
   
   #markAllNotAttending:hover {
-    color: #d1ab78;
+    color: #8898c4;
   }  
 
   #confirmationMessage {
